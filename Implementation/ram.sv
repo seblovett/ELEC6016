@@ -29,7 +29,7 @@ timeprecision 100ps;
 
 //wire [10:0] Address = Bus.Address[10:0];  
 
-logic [7:0] Data_stored [ 0 : 2047 ];
+logic [7:0] Data_stored [ 0 : 45 ];
 
 initial
   #1ns // This delay allows for program file to

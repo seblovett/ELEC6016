@@ -32,7 +32,7 @@ begin : PcReg
 		Pc = 0;
 	else
 		case (PcSel)
-			PcInc: Pc <= Pc + 1;
+			PcInc: Pc <= Pc + 1'd1;
 			PcJmp: Pc <= AccIn; //jump to ALU result
 		endcase
 end

@@ -6,7 +6,8 @@
 
 module control (
 	input wire  Clock, Reset, 
-	input wire  opcodes::opcodes_t OpCode,
+	//input wire  opcodes::opcodes_t OpCode,
+	input wire [3:0] OpCode,
 	input wire  Sw8,
 	output logic RegWe, WDataSel, AccStore, Op1Sel, ImmSel, Op2Sel,
 	output opcodes::alu_functions_t AluOp,
@@ -70,12 +71,12 @@ begin
 			//WDataSel = 0; // choose the ACC
 			RegWe = 1;
 		end
-	JMP   : begin
-			Op1Sel = 0; //register
-			Op2Sel = 1; //PC
-			PcSel  = PcJmp;
-			AluOp  = ALU_ADD;
-		end
+//	JMP   : begin
+//			Op1Sel = 0; //register
+//			Op2Sel = 1; //PC
+//			PcSel  = PcJmp;
+//			AluOp  = ALU_ADD;
+//		end
 	JMPA  : begin
 			Op1Sel = 1; //immediate
 			Op2Sel = 0; //ACC
@@ -88,6 +89,9 @@ begin
 			PcSel  = PcJmp;
 			AluOp  = ALU_ADD;
 		end
+		default:
+			PcSel = PcInc;
+			
 	endcase
 
 end

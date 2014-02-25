@@ -15,17 +15,16 @@ timeunit 1ns; timeprecision 1ps;
 
 logic [n-1:0] regs[regcount-1:0];
 
-always_ff @ (posedge Clock or posedge Reset)
+always_ff @ (posedge Clock)// or posedge Reset)
 begin
-	if(Reset) //Reset the system
-		regs <= '{regcount{'{n{0}}}};
-	else
-	 begin
-		if (WE)
+		if (WE == 1)
 			regs[Rs1] <= Data;
-	 end
 end
-
+//	if(Reset) //Reset the system
+//		regs <= '{regcount{'{n{0}}}};
+//	else
+//	 begin
+//end
 assign Rd1 = regs[Rs1];
 //assign Rd2 = regs[Rs2];
 
