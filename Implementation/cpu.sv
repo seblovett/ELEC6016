@@ -1,7 +1,7 @@
 // cpu.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:12:41 GMT
-// <+Last Edited: Tue 25 Feb 2014 11:51:54 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Tue 25 Feb 2014 11:58:12 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module cpu #(parameter n = 8) ( //n - bus width
@@ -28,6 +28,7 @@ control c
 	.PcWait(PcWait)
 );
 
+assign LEDs = RegData;
 //program counter
 logic [7:0] pc;
 always_ff @ (posedge Clock or posedge Reset)
