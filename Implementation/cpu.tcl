@@ -16,6 +16,7 @@ set wave_signal_list {
   cpu_stim.MemData
   cpu_stim.Switches
   cpu_stim.LEDs
+  cpu_stim.c.LedStore
   cpu_stim.c.pc
   cpu_stim.c.PcWait
   cpu_stim.c.c.OpCode

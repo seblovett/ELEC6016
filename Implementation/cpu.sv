@@ -1,7 +1,7 @@
 // cpu.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:12:41 GMT
-// <+Last Edited: Tue 25 Feb 2014 12:42:25 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Tue 25 Feb 2014 12:57:08 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module cpu #(parameter n = 8) ( //n - bus width
@@ -13,7 +13,7 @@ module cpu #(parameter n = 8) ( //n - bus width
 
 timeunit 1ns; timeprecision 1ps;
 import opcodes::*;
-wire RegWe;
+wire RegWe, LedStore;
 wire  [n-1:0] RegData, AccIn;
 logic [n-1:0] WData;
 alu_functions_t AluOp;
@@ -27,10 +27,20 @@ control c
 	.Cond(MemData[4]),
 	.WDataSel(WDataSel),
 	.PcWait(PcWait),
-	.AccStore(AccStore)
+	.AccStore(AccStore),
+	.LedStore(LedStore)
 );
 
-assign LEDs = RegData;
+//logic [n-1:0] LEDs;
+always_ff @ (posedge Clock or posedge Reset)
+begin : LedReg
+	if (Reset)
+		LEDs = 0;
+	else
+		if(LedStore)
+			LEDs <= RegData;
+end
+
 //program counter
 logic [7:0] pc;
 always_ff @ (posedge Clock or posedge Reset)
