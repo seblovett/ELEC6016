@@ -1,7 +1,7 @@
 // cpu.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:12:41 GMT
-// <+Last Edited: Tue 25 Feb 2014 13:43:27 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Tue 25 Feb 2014 17:00:11 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module cpu #(parameter n = 8) ( //n - bus width
@@ -28,9 +28,13 @@ control c
 	.PcWait(PcWait),
 	.AccStore(AccStore),
 	.LedStore(LedStore),
-	.Sw8(Switches[8])
+	.Sw8(Switches[8]),
+	.Op1Sel(Op1Sel)
 );
 
+
+logic [n-1:0] AluA;
+assign AluA = (Op1Sel) ?{MemData[3:0], 4'b0000} : RegData;
 //logic [n-1:0] LEDs;
 always_ff @ (posedge Clock or posedge Reset)
 begin : LedReg
@@ -81,7 +85,7 @@ registers #(.n(n), .addr_width(3), .regcount(8) )
 alu #(.n(n)) //n - data bus width
 alu1
 (
-        .a(RegData), 
+        .a(AluA), 
 	.b(Acc),
         .Function(AluOp),
         .q(AccIn)

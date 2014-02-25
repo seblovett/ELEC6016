@@ -11,6 +11,7 @@ typedef enum logic [3:0] {
 	STSW  = 4,
 	LEDS  = 6,
 	PASSA = 8,
+	LUI   = 9,
 	ADD   = 10,
 	MULT  = 12,
 	STACC = 14
