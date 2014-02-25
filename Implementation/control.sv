@@ -1,13 +1,13 @@
 // control.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:21:44 GMT
-// <+Last Edited: Tue 25 Feb 2014 13:36:27 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Tue 25 Feb 2014 13:47:00 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module control (
 	input wire  Clock, Reset, 
 	input wire  opcodes::opcodes_t OpCode,
-	input wire  Cond, Sw8,
+	input wire  Sw8,
 	output logic RegWe, WDataSel, PcWait, AccStore, LedStore,
 	output opcodes::alu_functions_t AluOp
 	);
@@ -28,8 +28,11 @@ begin
 	LedStore = 0;
 	case(OpCode)
 	//NOOP  :	//Use defaults
-	WAIT  :	begin
-			PcWait = ~(Cond ^ Sw8);	
+	WAIT0 :	begin
+			PcWait = ~Sw8;	
+		end
+	WAIT1 :	begin
+			PcWait = Sw8;	
 		end
 	STSW  :	begin
 			WDataSel = 1; //Choose switches
