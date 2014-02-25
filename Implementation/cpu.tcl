@@ -11,24 +11,23 @@ simvision {
 #
 set wave_signal_list {
   cpu_stim.Clock
-  cpu_stim.nReset
+  cpu_stim.Reset
   cpu_stim.MemAddr
   cpu_stim.MemData
   cpu_stim.Switches
   cpu_stim.LEDs
   cpu_stim.c.LedStore
-  cpu_stim.c.pc
+  cpu_stim.c.d.pc
   cpu_stim.c.PcWait
   cpu_stim.c.c.OpCode
-  cpu_stim.c.c.Cond
   cpu_stim.c.c.AccStore
-  cpu_stim.c.Acc
-  cpu_stim.c.RegData
+  cpu_stim.c.d.Acc
+  cpu_stim.c.d.RegData
   cpu_stim.c.AluOp
-  cpu_stim.c.WData
+  cpu_stim.c.d.WData
   cpu_stim.c.WDataSel
   cpu_stim.c.RegWe
-  cpu_stim.c.r.regs
+  cpu_stim.c.d.r.regs
   cpu_stim.r.Data_stored
 }
 
