@@ -1,7 +1,7 @@
 // datapath.sv
 // Writen by seblovett
 // Date Created Tue 25 Feb 2014 17:09:55 GMT
-// <+Last Edited: Tue 25 Feb 2014 20:36:02 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Tue 25 Feb 2014 20:55:37 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module datapath #(parameter n = 8) (
@@ -52,7 +52,7 @@ end
 
 assign WData = (WDataSel) ? Switches[7:0] : Acc;
 
-registers #(.n(n), .addr_width(4), .regcount(10) ) 
+registers #(.n(n), .addr_width(4), .regcount(11) ) 
  r ( 
         .Clock(Clock), 
 	.Reset(Reset), 
