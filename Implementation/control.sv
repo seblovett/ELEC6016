@@ -1,14 +1,14 @@
 // control.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:21:44 GMT
-// <+Last Edited: Tue 25 Feb 2014 18:43:07 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Tue 25 Feb 2014 20:32:26 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module control (
 	input wire  Clock, Reset, 
 	input wire  opcodes::opcodes_t OpCode,
 	input wire  Sw8,
-	output logic RegWe, WDataSel, AccStore, LedStore, Op1Sel, ImmSel, Op2Sel,
+	output logic RegWe, WDataSel, AccStore, Op1Sel, ImmSel, Op2Sel,
 	output opcodes::alu_functions_t AluOp,
 	output opcodes::PcSel_t PcSel
 	);
@@ -26,7 +26,6 @@ begin
 	PcSel = PcInc;
 	AluOp = ALU_NOOP;
 	AccStore = 0;
-	LedStore = 0;
 	Op1Sel = 0;
 	Op2Sel = 0;
 	ImmSel = 0;
