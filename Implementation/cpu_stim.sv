@@ -1,7 +1,7 @@
 // cpu_stim.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:23:59 GMT
-// <+Last Edited: Tue 25 Feb 2014 18:15:01 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Tue 25 Feb 2014 20:47:40 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module cpu_stim ();
@@ -31,8 +31,12 @@ begin
         Reset = 0;
         #100 Reset = 1;
         #1000 Reset = 0;
-	#10000 Switches = 10'b0100000011;
-	#3000 Switches[8] = 0;
+	#18000 Switches[8] = 1;//load x
+	#3000  Switches[8] = 0;
+	#2000  Switches[8] = 1;//load y
+	#2000  Switches[8] = 0; //go!
+	#30000 Switches[8] = 1; //x shown, now show y
+	#2000  Switches[8] = 0; //restart!
 	#10000 $stop();
 end
 

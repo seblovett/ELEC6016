@@ -17,10 +17,11 @@ E4	;	STACC R4 ; b1
 B1	;	ADDI 1
 E5	;	STACC R5 ; b2
 20	;	WAIT0 ;wait while sw8 == 0 ; LOOP
-46	;	STSW R6 ; store switches to R6
+46	;	STSW R6 ; store switches to R6 ; X
 30	;	WAIT1 ; Wait while sw8 == 1
 20	;	WAIT0 ; Wait while sw8 == 0
-47	;	STSW R7 ; store switches to R7
+47	;	STSW R7 ; store switches to R7 ; Y
+30	;	WAIT1
 86	;	PASSA R6 ;transform - load x1 to acc
 C0	;	MULT R0 ; a11 * x1
 E8	;	STACC R8 ; store to r8
