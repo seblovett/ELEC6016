@@ -1,7 +1,7 @@
 // datapath.sv
 // Writen by seblovett
 // Date Created Tue 25 Feb 2014 17:09:55 GMT
-// <+Last Edited: Tue 25 Feb 2014 18:22:19 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Tue 25 Feb 2014 18:46:31 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module datapath #(parameter n = 8) (
@@ -19,7 +19,7 @@ import opcodes::*;
 logic [n-1:0] AluA, AluB, Imm, WData, Pc, Acc;
 wire  [n-1:0]  RegData, AccIn;
 
-assign Imm  = (ImmSel) ? {MemData[3:0], 4'b0000} : { {4{MemData[3]}}, MemData[3:0]};
+assign Imm  = (ImmSel) ? {MemData[3:0], 4'b0000} : { 4'b0000, MemData[3:0]};
 assign AluA = (Op1Sel) ? Imm : RegData;
 assign AluB = (Op2Sel) ? Pc  : Acc;
 

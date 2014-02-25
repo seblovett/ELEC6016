@@ -1,7 +1,7 @@
 // control.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:21:44 GMT
-// <+Last Edited: Tue 25 Feb 2014 18:23:07 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Tue 25 Feb 2014 18:43:07 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module control (
@@ -72,7 +72,19 @@ begin
 			RegWe = 1;
 		end
 	JMP   : begin
-			Op1Sel = 1; //imedaite
+			Op1Sel = 0; //register
+			Op2Sel = 1; //PC
+			PcSel  = PcJmp;
+			AluOp  = ALU_ADD;
+		end
+	JMPA  : begin
+			Op1Sel = 1; //immediate
+			Op2Sel = 0; //ACC
+			PcSel  = PcJmp;
+			AluOp  = ALU_ADD;
+		end
+	JMPI  : begin
+			Op1Sel = 1; //immediate
 			Op2Sel = 1; //PC
 			PcSel  = PcJmp;
 			AluOp  = ALU_ADD;
