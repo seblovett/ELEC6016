@@ -1,7 +1,7 @@
 // cpu_stim.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:23:59 GMT
-// <+Last Edited: Tue 25 Feb 2014 10:33:50 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Tue 25 Feb 2014 12:13:38 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module cpu_stim ();
@@ -13,7 +13,8 @@ parameter n = 8;
 logic Clock, Reset;
 logic [n-1:0] MemData;
 wire [n-1:0] MemAddr;
-
+logic [8:0] Switches;
+wire [n-1: 0] LEDs;
 
 cpu #(.n(n)) c (.*);
 ram r (.Address(MemAddr), .Data(MemData));
