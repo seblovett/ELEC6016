@@ -1,7 +1,7 @@
 // cpu.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:12:41 GMT
-// <+Last Edited: Tue 25 Feb 2014 12:32:07 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Tue 25 Feb 2014 12:42:25 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module cpu #(parameter n = 8) ( //n - bus width
@@ -12,10 +12,11 @@ module cpu #(parameter n = 8) ( //n - bus width
 	output logic [n-1: 0] LEDs);
 
 timeunit 1ns; timeprecision 1ps;
-
+import opcodes::*;
 wire RegWe;
 wire  [n-1:0] RegData, AccIn;
 logic [n-1:0] WData;
+alu_functions_t AluOp;
 control c 
 (
 	.Clock(Clock),
@@ -25,7 +26,8 @@ control c
 	.OpCode(MemData[7:5]),
 	.Cond(MemData[4]),
 	.WDataSel(WDataSel),
-	.PcWait(PcWait)
+	.PcWait(PcWait),
+	.AccStore(AccStore)
 );
 
 assign LEDs = RegData;
@@ -36,9 +38,7 @@ begin : pcReg
 	if (Reset)
 		pc = 0;
 	else
-		if(PcWait)
-			pc <= pc;
-		else
+		if(!PcWait)
 			pc <= pc + 1;
 end
 assign MemAddr = pc;
@@ -50,7 +50,8 @@ begin : AccReg
 	if (Reset)
 		Acc = 0;
 	else
-		Acc <= AccIn;
+		if(AccStore)
+			Acc <= AccIn;
 end
 
 //Mux Wdata

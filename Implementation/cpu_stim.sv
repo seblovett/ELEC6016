@@ -1,7 +1,7 @@
 // cpu_stim.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:23:59 GMT
-// <+Last Edited: Tue 25 Feb 2014 12:28:59 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Tue 25 Feb 2014 12:34:12 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module cpu_stim ();
@@ -35,7 +35,7 @@ begin
         #100 Reset = 1;
         #1000 Reset = 0;
 	
-	#2000 $stop();
+	#20000 $stop();
 end
 
 

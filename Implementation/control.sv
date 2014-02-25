@@ -1,14 +1,14 @@
 // control.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:21:44 GMT
-// <+Last Edited: Tue 25 Feb 2014 12:18:39 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Tue 25 Feb 2014 12:44:43 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module control (
 	input wire  Clock, Reset, 
 	input wire  opcodes::opcodes_t OpCode,
 	input wire  Cond,
-	output logic RegWe, WDataSel, PcWait,
+	output logic RegWe, WDataSel, PcWait, AccStore,
 	output opcodes::alu_functions_t AluOp
 	);
 
@@ -24,6 +24,7 @@ begin
 	WDataSel = 0;
 	PcWait = 0;
 	AluOp = ALU_NOOP;
+	AccStore = 0;
 	
 	case(OpCode)
 	//NOOP  :	//Use defaults
@@ -33,10 +34,22 @@ begin
 			RegWe    = 1; //Write to Reg
 		end
 //	LEDS  :	
-//	PASSA :	
-//	ADD   :	
-//	MULT  :	
-//	STACC :	
+	PASSA :	begin
+			AluOp =  ALU_A; //set alu op
+			AccStore = 1;   //store to acc
+		end
+	ADD   :	begin
+			AluOp = ALU_ADD;
+			AccStore = 1;
+		end
+	MULT  :	begin
+			AluOp = ALU_MULT;
+			AccStore = 1;
+		end
+	STACC :	begin	
+			//WDataSel = 0; // choose the ACC
+			RegWe = 1;
+		end
 	endcase
 
 end

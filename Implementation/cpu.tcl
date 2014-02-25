@@ -20,6 +20,7 @@ set wave_signal_list {
   cpu_stim.c.PcWait
   cpu_stim.c.c.OpCode
   cpu_stim.c.c.Cond
+  cpu_stim.c.c.AccStore
   cpu_stim.c.Acc
   cpu_stim.c.RegData
   cpu_stim.c.AluOp
