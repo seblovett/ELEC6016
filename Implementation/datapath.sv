@@ -1,26 +1,27 @@
 // datapath.sv
 // Writen by seblovett
 // Date Created Tue 25 Feb 2014 17:09:55 GMT
-// <+Last Edited: Tue 25 Feb 2014 17:24:52 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Tue 25 Feb 2014 17:49:09 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module datapath #(parameter n = 8) (
 	input wire [n-1:0] MemData, Switches,
 	output logic [n-1:0] MemAddr, LEDs,
-	input wire  Clock, Reset, RegWe, ImmSel, WDataSel, PcWait, AccStore, LedStore, Op1Sel,
-	input opcodes::alu_functions_t AluOp
+	input wire  Clock, Reset, RegWe, ImmSel, WDataSel, AccStore, LedStore, Op1Sel, Op2Sel,
+	input opcodes::alu_functions_t AluOp,
+	input opcodes::PcSel_t PcSel
 
 );
 
 timeunit 1ns; timeprecision 1ps;
 import opcodes::*;
 
-logic [n-1:0] AluA, Imm, WData;
+logic [n-1:0] AluA, AluB, Imm, WData, Pc, Acc;
 wire  [n-1:0]  RegData, AccIn;
 
-assign Imm  = (ImmSel) ? {MemData[3:0], 4'b0000} : {4'b0000, MemData[3:0]};
+assign Imm  = (ImmSel) ? {MemData[3:0], 4'b0000} : { {4{MemData[3]}}, MemData[3:0]};
 assign AluA = (Op1Sel) ? Imm : RegData;
-
+assign AluB = (Op2Sel) ? Pc  : Acc;
 always_ff @ (posedge Clock or posedge Reset)
 begin : LedReg
 	if (Reset)
@@ -31,19 +32,19 @@ begin : LedReg
 end
 
 //program counter
-logic [7:0] pc;
 always_ff @ (posedge Clock or posedge Reset)
-begin : pcReg
+begin : PcReg
 	if (Reset)
-		pc = 0;
+		Pc = 0;
 	else
-		if(!PcWait)
-			pc <= pc + 1;
+		case (PcSel)
+			PcInc: Pc <= Pc + 1;
+			PcJmp: Pc <= AccIn; //jump to ALU result
+		endcase
 end
-assign MemAddr = pc;
+assign MemAddr = Pc;
 
 //Accumulator
-logic [7:0] Acc;
 always_ff @ (posedge Clock or posedge Reset)
 begin : AccReg
 	if (Reset)
@@ -72,7 +73,7 @@ alu #(.n(n)) //n - data bus width
 alu1
 (
         .a(AluA), 
-	.b(Acc),
+	.b(AluB),
         .Function(AluOp),
         .q(AccIn)
 );

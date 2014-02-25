@@ -3,9 +3,10 @@ package opcodes;
 // ALU funcitons
 
 typedef enum logic [1:0] {ALU_A = 0, ALU_ADD = 1, ALU_MULT = 2, ALU_NOOP = 3} alu_functions_t;
-
+typedef enum logic [1:0] {PcWait = 2, PcInc = 0, PcJmp = 1} PcSel_t;
 typedef enum logic [3:0] {
 	NOOP  = 0,
+	JMP   = 1,
 	WAIT0 = 2,
 	WAIT1 = 3,
 	STSW  = 4,

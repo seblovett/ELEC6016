@@ -1,7 +1,7 @@
 // cpu.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:12:41 GMT
-// <+Last Edited: Tue 25 Feb 2014 17:24:24 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Tue 25 Feb 2014 17:43:48 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module cpu #(parameter n = 8) ( //n - bus width
@@ -15,7 +15,7 @@ timeunit 1ns; timeprecision 1ps;
 import opcodes::*;
 
 alu_functions_t AluOp;
-
+PcSel_t PcSel;
 control c 
 (
 	.Clock(Clock),
@@ -24,11 +24,12 @@ control c
 	.AluOp(AluOp),
 	.OpCode(MemData[7:4]),
 	.WDataSel(WDataSel),
-	.PcWait(PcWait),
+	.PcSel(PcSel),
 	.AccStore(AccStore),
 	.LedStore(LedStore),
 	.Sw8(Switches[8]),
 	.Op1Sel(Op1Sel),
+	.Op2Sel(Op2Sel),
 	.ImmSel(ImmSel)
 );
 
@@ -44,10 +45,11 @@ datapath d
 	.RegWe(RegWe),
 	.AluOp(AluOp),
 	.WDataSel(WDataSel),
-	.PcWait(PcWait),
+	.PcSel(PcSel),
 	.AccStore(AccStore),
 	.LedStore(LedStore),
-	.Op1Sel(Op1Sel)
+	.Op1Sel(Op1Sel),
+	.Op2Sel(Op2Sel)
 );
 
 endmodule

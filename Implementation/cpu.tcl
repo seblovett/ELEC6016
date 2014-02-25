@@ -17,12 +17,17 @@ set wave_signal_list {
   cpu_stim.Switches
   cpu_stim.LEDs
   cpu_stim.c.LedStore
-  cpu_stim.c.d.pc
-  cpu_stim.c.PcWait
+  cpu_stim.c.d.Pc
+  cpu_stim.c.d.PcSel
   cpu_stim.c.c.OpCode
   cpu_stim.c.c.AccStore
   cpu_stim.c.d.Acc
   cpu_stim.c.d.RegData
+  cpu_stim.c.d.AluA
+  cpu_stim.c.Op1Sel
+  cpu_stim.c.Op2Sel
+  cpu_stim.c.d.AluB
+  cpu_stim.c.d.AccIn
   cpu_stim.c.AluOp
   cpu_stim.c.d.WData
   cpu_stim.c.WDataSel
