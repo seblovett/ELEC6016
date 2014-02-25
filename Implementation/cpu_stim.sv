@@ -1,7 +1,7 @@
 // cpu_stim.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:23:59 GMT
-// <+Last Edited: Tue 25 Feb 2014 13:38:39 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Tue 25 Feb 2014 17:08:43 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module cpu_stim ();
@@ -36,7 +36,7 @@ begin
         #1000 Reset = 0;
 	#10000 Switches = 9'b100000011;
 	#3000 Switches[8] = 0;
-	#2000 $stop();
+	#10000 $stop();
 end
 
 

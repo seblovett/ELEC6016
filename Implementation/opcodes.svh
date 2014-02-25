@@ -13,6 +13,7 @@ typedef enum logic [3:0] {
 	PASSA = 8,
 	LUI   = 9,
 	ADD   = 10,
+	ADDI  = 11,
 	MULT  = 12,
 	STACC = 14
 } opcodes_t;
