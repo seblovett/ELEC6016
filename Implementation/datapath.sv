@@ -1,13 +1,13 @@
 // datapath.sv
 // Writen by seblovett
 // Date Created Tue 25 Feb 2014 17:09:55 GMT
-// <+Last Edited: Tue 25 Feb 2014 17:49:09 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Tue 25 Feb 2014 18:22:19 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module datapath #(parameter n = 8) (
 	input wire [n-1:0] MemData, Switches,
 	output logic [n-1:0] MemAddr, LEDs,
-	input wire  Clock, Reset, RegWe, ImmSel, WDataSel, AccStore, LedStore, Op1Sel, Op2Sel,
+	input wire  Clock, Reset, RegWe, ImmSel, WDataSel, AccStore, Op1Sel, Op2Sel,
 	input opcodes::alu_functions_t AluOp,
 	input opcodes::PcSel_t PcSel
 
@@ -22,14 +22,8 @@ wire  [n-1:0]  RegData, AccIn;
 assign Imm  = (ImmSel) ? {MemData[3:0], 4'b0000} : { {4{MemData[3]}}, MemData[3:0]};
 assign AluA = (Op1Sel) ? Imm : RegData;
 assign AluB = (Op2Sel) ? Pc  : Acc;
-always_ff @ (posedge Clock or posedge Reset)
-begin : LedReg
-	if (Reset)
-		LEDs = 0;
-	else
-		if(LedStore)
-			LEDs <= RegData;
-end
+
+assign LEDs = Acc;
 
 //program counter
 always_ff @ (posedge Clock or posedge Reset)

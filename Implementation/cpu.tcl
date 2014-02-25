@@ -12,8 +12,8 @@ simvision {
 set wave_signal_list {
   cpu_stim.Clock
   cpu_stim.Reset
-  cpu_stim.MemAddr
-  cpu_stim.MemData
+  cpu_stim.c.MemAddr
+  cpu_stim.c.MemData
   cpu_stim.Switches
   cpu_stim.LEDs
   cpu_stim.c.LedStore

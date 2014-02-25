@@ -30,21 +30,6 @@ timeprecision 100ps;
 //wire [10:0] Address = Bus.Address[10:0];  
 
 logic [7:0] Data_stored [ 0 : 2047 ];
-logic delay;
-
-initial
-  delay = 0;
-
-//always @(negedge nCE or Address)
-//  if (! nCE)
-//    begin
-//      delay = 1;
-//      #`ram_access_time
-//      delay = 0;
-//    end 
-
-// The #20 delay here ensures that the data is available before nWait goes high
-//assign #20 Bus.nWait = (delay && !nCE && (!Bus.nOE || !Bus.RnW)) ? 0 : 1'bz;
 
 initial
   #1ns // This delay allows for program file to

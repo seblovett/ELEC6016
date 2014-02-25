@@ -1,7 +1,7 @@
 // control.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:21:44 GMT
-// <+Last Edited: Tue 25 Feb 2014 17:56:14 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Tue 25 Feb 2014 18:23:07 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module control (
@@ -42,7 +42,7 @@ begin
 			WDataSel = 1; //Choose switches
 			RegWe    = 1; //Write to Reg
 		end
-	LEDS  :		LedStore = 1;
+//	LEDS  :		LedStore = 1;
 	PASSA :	begin
 			AluOp =  ALU_A; //set alu op
 			AccStore = 1;   //store to acc

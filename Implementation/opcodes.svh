@@ -10,7 +10,6 @@ typedef enum logic [3:0] {
 	WAIT0 = 2,
 	WAIT1 = 3,
 	STSW  = 4,
-	LEDS  = 6,
 	PASSA = 8,
 	LUI   = 9,
 	ADD   = 10,
