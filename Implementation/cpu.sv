@@ -1,7 +1,7 @@
 // cpu.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:12:41 GMT
-// <+Last Edited: Tue 25 Feb 2014 12:57:08 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Tue 25 Feb 2014 13:34:43 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module cpu #(parameter n = 8) ( //n - bus width
@@ -28,7 +28,8 @@ control c
 	.WDataSel(WDataSel),
 	.PcWait(PcWait),
 	.AccStore(AccStore),
-	.LedStore(LedStore)
+	.LedStore(LedStore),
+	.Sw8(Switches[8])
 );
 
 //logic [n-1:0] LEDs;
