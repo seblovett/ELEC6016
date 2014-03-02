@@ -9,7 +9,7 @@
 `ifdef prog_file
   // already defined - do nothing
 `else
-  `define prog_file  "program.hex"
+  `define prog_file  "transform.hex"
 `endif
 
 `ifdef ram_access_time
@@ -30,7 +30,7 @@ timeprecision 100ps;
 
 //wire [10:0] Address = Bus.Address[10:0];  
 
-logic [7:0] Data_stored [ 0 : 45 ];
+logic [7:0] Data_stored [ 127 : 0 ];
 
 initial
   #1ns // This delay allows for program file to
@@ -38,6 +38,7 @@ initial
        $readmemh(`prog_file,Data_stored);
 
 always_ff @ (posedge Clock)
+begin
 	Data <= Data_stored[Address];
 
 endmodule
