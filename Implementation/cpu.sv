@@ -26,7 +26,7 @@ control c
 	.Reset(Reset),
 	.RegWe(RegWe),
 	.AluOp(AluOp),
-	.OpCode(MemData[7:4]),
+	.OpCode(opcodes_t'(MemData[7:4])),
 	.WDataSel(WDataSel),
 	.PcSel(PcSel),
 	.AccStore(AccStore),
