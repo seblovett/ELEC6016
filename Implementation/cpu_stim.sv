@@ -1,7 +1,7 @@
 // cpu_stim.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:23:59 GMT
-// <+Last Edited: Tue 25 Feb 2014 20:47:40 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Sun 02 Mar 2014 22:53:30 GMT by hl13g10 on hart2.ecs.soton.ac.uk +>
 
 
 module cpu_stim ();
@@ -37,9 +37,14 @@ begin
 	#2000  Switches[8] = 0; //go!
 	#30000 Switches[8] = 1; //x shown, now show y
 	#2000  Switches[8] = 0; //restart!
-	#10000 $stop();
+	//#100000 $stop();
 end
 
+always
+begin
+	#1000 if ( c.d.Pc == 8'hFF )
+		$stop();
+end
 
 endmodule
 

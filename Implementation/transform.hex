@@ -1,46 +1,46 @@
-90	;	LUI 0; load constants
-B1	;	ADDI 1
-E0	;	STACC R0 ; a11
-90	;	LUI 0; 
-B1	;	ADDI 1
-E1	;	STACC R1 ; a12
-90	;	LUI 0; 
-B1	;	ADDI 1
-E2	;	STACC R2 ; a21
-90	;	LUI 0
-B1	;	ADDI 1
-E3	;	STACC R3 ; a22
-90	;	LUI 0; 
-B1	;	ADDI 1
-E4	;	STACC R4 ; b1
-90	;	LUI 0; 
-B1	;	ADDI 1
-E5	;	STACC R5 ; b2
-20	;	WAIT0 ;wait while sw8 == 0 ; LOOP
-46	;	STSW R6 ; store switches to R6 ; X
-30	;	WAIT1 ; Wait while sw8 == 1
-20	;	WAIT0 ; Wait while sw8 == 0
-47	;	STSW R7 ; store switches to R7 ; Y
-30	;	WAIT1
-86	;	PASSA R6 ;transform - load x1 to acc
-C0	;	MULT R0 ; a11 * x1
-E8	;	STACC R8 ; store to r8
-87	;	PASSA R7 ; y1 to acc
-C1	;	MULT R1 ; acc * a12
-A8	;	ADD R8 ; (y1 * a12) + (x1 + a11)
-A4	;	ADD R4 ; acc + b1
-E9	;	STACC R9
-86	;	PASSA R6 ;transform - load x1 to acc
-C2	;	MULT R2 ; a21 * x1
-E8	;	STACC R8 ; store to r8
-87	;	PASSA R7 ; y1 to acc
-C3	;	MULT R3 ; acc * a22
-A8	;	ADD R8 ; (y1 * a12) + (x1 + a11)
-A5	;	ADD R5 ; acc + b1
-EA	;	STACC R10
-89	;	PASSA R9 ; display x2
-20	;	WAIT0
-8A	;	PASSA R10 ; display y2
-30	;	WAIT1
-91	;	LUI 1 ;return to loop - load address to acc
-62	;	JMPA 2 ; jump to address 19
+90	//;	LUI 0; load constants
+B1	//;	ADDI 1
+E0	//;	STACC R0 ; a11
+90	//;	LUI 0; 
+B1	//;	ADDI 1
+E1	//;	STACC R1 ; a12
+90	//;	LUI 0; 
+B1	//;	ADDI 1
+E2	//;	STACC R2 ; a21
+90	//;	LUI 0
+B1	//;	ADDI 1
+E3	//;	STACC R3 ; a22
+90	//;	LUI 0; 
+B1	//;	ADDI 1
+E4	//;	STACC R4 ; b1
+90	//;	LUI 0; 
+B1	//;	ADDI 1
+E5	//;	STACC R5 ; b2
+20	//;	WAIT0 ;wait while sw8 == 0 ; LOOP
+46	//;	STSW R6 ; store switches to R6 ; X
+30	//;	WAIT1 ; Wait while sw8 == 1
+20	//;	WAIT0 ; Wait while sw8 == 0
+47	//;	STSW R7 ; store switches to R7 ; Y
+30	//;	WAIT1
+86	//;	PASSA R6 ;transform - load x1 to acc
+C0	//;	MULT R0 ; a11 * x1
+E8	//;	STACC R8 ; store to r8
+87	//;	PASSA R7 ; y1 to acc
+C1	//;	MULT R1 ; acc * a12
+A8	//;	ADD R8 ; (y1 * a12) + (x1 + a11)
+A4	//;	ADD R4 ; acc + b1
+E9	//;	STACC R9
+86	//;	PASSA R6 ;transform - load x1 to acc
+C2	//;	MULT R2 ; a21 * x1
+E8	//;	STACC R8 ; store to r8
+87	//;	PASSA R7 ; y1 to acc
+C3	//;	MULT R3 ; acc * a22
+A8	//;	ADD R8 ; (y1 * a12) + (x1 + a11)
+A5	//;	ADD R5 ; acc + b1
+EA	//;	STACC R10
+89	//;	PASSA R9 ; display x2
+20	//;	WAIT0
+8A	//;	PASSA R10 ; display y2
+30	//;	WAIT1
+91	//;	LUI 1 ;return to loop - load address to acc
+62	//;	JMPA 2 ; jump to address 19

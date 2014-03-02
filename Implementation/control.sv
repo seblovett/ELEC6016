@@ -1,13 +1,13 @@
 // control.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:21:44 GMT
-// <+Last Edited: Tue 25 Feb 2014 20:32:26 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Sun 02 Mar 2014 22:28:42 GMT by hl13g10 on hart2.ecs.soton.ac.uk +>
 
 
 module control (
 	input wire  Clock, Reset, 
 	//input wire  opcodes::opcodes_t OpCode,
-	input wire [3:0] OpCode,
+	input opcodes::opcodes_t OpCode,
 	input wire  Sw8,
 	output logic RegWe, WDataSel, AccStore, Op1Sel, ImmSel, Op2Sel,
 	output opcodes::alu_functions_t AluOp,
@@ -18,18 +18,37 @@ timeunit 1ns; timeprecision 1ps;
 
 import opcodes::*;
 
+typedef enum logic [1:0] {Fetch, Read, Execute} state_t;
+state_t state;
+
+always_ff @ (posedge Clock or posedge Reset)
+begin
+	if(Reset)
+		state <= Fetch;
+	else
+	begin
+		case(state)
+			Fetch: state <= Read;
+			Read:  state <= Execute;
+			Execute: state <= Fetch;
+		endcase
+	end
+end
 
 always_comb
 begin
 	//some defaults
 	RegWe = 0;
 	WDataSel = 0;
-	PcSel = PcInc;
+	PcSel = PcWait;
 	AluOp = ALU_NOOP;
 	AccStore = 0;
 	Op1Sel = 0;
 	Op2Sel = 0;
 	ImmSel = 0;
+	if (state == Execute)
+	begin
+	PcSel = PcInc;
 	case(OpCode)
 	//NOOP  :	//Use defaults
 	WAIT0 :	begin
@@ -93,7 +112,7 @@ begin
 			PcSel = PcInc;
 			
 	endcase
-
+	end //if
 end
 endmodule
 

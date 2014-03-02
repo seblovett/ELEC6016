@@ -32,6 +32,7 @@ set wave_signal_list {
   cpu_stim.c.d.WData
   cpu_stim.c.WDataSel
   cpu_stim.c.RegWe
+  cpu_stim.c.d.r.Rs1
   cpu_stim.c.d.r.regs
   cpu_stim.r.Data_stored
 }
