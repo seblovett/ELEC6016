@@ -18,7 +18,7 @@ logic[n-1:0] MemData;
 wire [n-1:0] MemAddr; 
 wire RegWe, WDataSel, AccStore, Op1Sel, Op2Sel, ImmSel;
 
-ram r (.Address(MemAddr), .Data(MemData));
+ram r (.Clock(Clock), .Address(MemAddr), .Data(MemData));
 
 control c 
 (

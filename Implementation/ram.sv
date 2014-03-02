@@ -20,6 +20,7 @@
 
 
 module ram(
+	input wire Clock,
 	input wire [7:0] Address,
 	output logic [7:0] Data
   );
@@ -36,7 +37,7 @@ initial
        // be written within the same simulation
        $readmemh(`prog_file,Data_stored);
 
-
-assign Data = Data_stored[Address];
+always_ff @ (posedge Clock)
+	Data <= Data_stored[Address];
 
 endmodule
