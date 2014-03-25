@@ -1,7 +1,7 @@
 // alu.sv
 // Writen by seblovett
 // Date Created Mon 17 Feb 2014 09:18:54 GMT
-// <+Last Edited: Tue 25 Feb 2014 12:51:05 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Tue 25 Mar 2014 13:07:58 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module alu #(parameter n = 8) //n - data bus width
@@ -23,7 +23,7 @@ always_comb
 	unique case (Function)
 		ALU_A:		q = a;
 		ALU_ADD:	q = a + b;
-		ALU_MULT:	q = multout[n-1:0];
+		ALU_MULT:	q = multout[14:7];
 		default:	q = 0;
 	endcase
 	

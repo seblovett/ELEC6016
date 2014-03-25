@@ -40,5 +40,5 @@ initial
 always_ff @ (posedge Clock)
 begin
 	Data <= Data_stored[Address];
-
+end
 endmodule
