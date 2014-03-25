@@ -2,12 +2,17 @@
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:12:41 GMT
 // <+Last Edited: Tue 25 Feb 2014 18:22:56 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
-
+`include "options.sv";
 
 module cpu #(parameter n = 8) ( //n - bus width
 	input wire Clock, Reset, 
 	input wire [9:0] Switches,
-	output logic [n-1: 0] LEDs);
+`ifdef demo
+	output logic [9:0] LEDs
+`else
+	output logic [n-1: 0] LEDs
+`endif	
+	);
 
 timeunit 1ns; timeprecision 1ps;
 import opcodes::*;
@@ -20,6 +25,16 @@ wire RegWe, WDataSel, AccStore, Op1Sel, Op2Sel, ImmSel;
 
 ram r (.Clock(Clock), .Address(MemAddr), .Data(MemData));
 
+`ifdef demo
+	always_comb
+	begin
+		case (opcodes_t'(MemData[7:4]))
+			WAIT0: LEDs[9:8] = 2'b01;
+			WAIT1: LEDs[9:8] = 2'b10;
+			default: LEDs[9:8] = 2'b00;
+		endcase
+	end
+`endif
 control c 
 (
 	.Clock(Clock),
@@ -42,7 +57,7 @@ datapath d
 	.MemData(MemData),
 	.MemAddr(MemAddr),
 	.Switches(Switches[7:0]),
-	.LEDs(LEDs),
+	.LEDs(LEDs[7:0]),
 	.Clock(Clock),
 	.Reset(Reset),
 	.RegWe(RegWe),
