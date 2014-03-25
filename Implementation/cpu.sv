@@ -21,7 +21,7 @@ alu_functions_t AluOp;
 PcSel_t PcSel;
 logic[n-1:0] MemData;
 wire [n-1:0] MemAddr; 
-wire RegWe, WDataSel, AccStore, Op1Sel, Op2Sel, ImmSel;
+wire RegWe, WDataSel, AccStore, Op1Sel, ImmSel;
 
 ram r (.Clock(Clock), .Address(MemAddr), .Data(MemData));
 
@@ -47,7 +47,7 @@ control c
 	.AccStore(AccStore),
 	.Sw8(Switches[8]),
 	.Op1Sel(Op1Sel),
-	.Op2Sel(Op2Sel),
+//	.Op2Sel(Op2Sel),
 	.ImmSel(ImmSel)
 );
 
@@ -66,7 +66,7 @@ datapath d
 	.PcSel(PcSel),
 	.AccStore(AccStore),
 	.Op1Sel(Op1Sel),
-	.Op2Sel(Op2Sel)
+//	.Op2Sel(Op2Sel)
 );
 
 endmodule

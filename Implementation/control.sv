@@ -9,7 +9,7 @@ module control (
 	//input wire  opcodes::opcodes_t OpCode,
 	input opcodes::opcodes_t OpCode,
 	input wire  Sw8,
-	output logic RegWe, WDataSel, AccStore, Op1Sel, ImmSel, Op2Sel,
+	output logic RegWe, WDataSel, AccStore, Op1Sel, ImmSel, //Op2Sel,
 	output opcodes::alu_functions_t AluOp,
 	output opcodes::PcSel_t PcSel
 	);
@@ -44,7 +44,7 @@ begin
 	AluOp = ALU_NOOP;
 	AccStore = 0;
 	Op1Sel = 0;
-	Op2Sel = 0;
+	//Op2Sel = 0;
 	ImmSel = 0;
 	if (state == Execute)
 	begin
@@ -98,7 +98,7 @@ begin
 //		end
 	JMPA  : begin
 			Op1Sel = 1; //immediate
-			Op2Sel = 0; //ACC
+
 			PcSel  = PcJmp;
 			AluOp  = ALU_ADD;
 		end
