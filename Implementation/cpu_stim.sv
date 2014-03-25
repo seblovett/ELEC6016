@@ -10,7 +10,7 @@ timeunit 1ns; timeprecision 1ps;
 
 
 parameter n = 8;
-logic Clock, Reset;
+logic Clock, nReset;
 logic [9:0] Switches;
 wire [n-1: 0] LEDs;
 
@@ -28,9 +28,9 @@ end
 initial
 begin
 	Switches = 10'b0000010000;
-        Reset = 0;
-        #100 Reset = 1;
-        #1000 Reset = 0;
+        nReset = 1;
+        #100 nReset = 0;
+        #1000 nReset = 1;
 //	#50000 Switches[8] = 1;//load x
 //	#3000  Switches[8] = 0;
 //	#2000  Switches[8] = 1;//load y

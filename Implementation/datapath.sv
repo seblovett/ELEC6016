@@ -7,7 +7,7 @@
 module datapath #(parameter n = 8) (
 	input wire [n-1:0] MemData, Switches,
 	output logic [n-1:0] MemAddr, LEDs,
-	input wire  Clock, Reset, RegWe, ImmSel, WDataSel, AccStore, Op1Sel, Op2Sel,
+	input wire  Clock, nReset, RegWe, ImmSel, WDataSel, AccStore, Op1Sel, Op2Sel,
 	input opcodes::alu_functions_t AluOp,
 	input opcodes::PcSel_t PcSel
 
@@ -22,13 +22,12 @@ wire  [n-1:0]  RegData, AccIn;
 assign Imm  = (ImmSel) ? {MemData[3:0], 4'b0000} : { 4'b0000, MemData[3:0]};
 assign AluA = (Op1Sel) ? Imm : RegData;
 assign AluB = (Op2Sel) ? Pc  : Acc;
-
 assign LEDs = Acc;
-
+assign WData = (WDataSel) ? Switches[7:0] : Acc;
 //program counter
-always_ff @ (posedge Clock or posedge Reset)
+always_ff @ (posedge Clock or negedge nReset)
 begin : PcReg
-	if (Reset)
+	if (!nReset)
 		Pc = 0;
 	else
 		case (PcSel)
@@ -39,23 +38,21 @@ end
 assign MemAddr = Pc;
 
 //Accumulator
-always_ff @ (posedge Clock or posedge Reset)
+always_ff @ (posedge Clock or negedge nReset)
 begin : AccReg
-	if (Reset)
+	if (!nReset)
 		Acc = 0;
 	else
 		if(AccStore)
 			Acc <= AccIn;
 end
 
-//Mux Wdata
 
-assign WData = (WDataSel) ? Switches[7:0] : Acc;
 
 registers #(.n(n), .addr_width(4), .regcount(11) ) 
  r ( 
         .Clock(Clock), 
-	.Reset(Reset), 
+//	.nReset(nReset), 
 	.WE   (RegWe),  //control signals
         .Rs1  (MemData[3:0]), 
         .Rd1  (RegData), 

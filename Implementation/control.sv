@@ -5,7 +5,7 @@
 
 
 module control (
-	input wire  Clock, Reset, 
+	input wire  Clock, nReset, 
 	//input wire  opcodes::opcodes_t OpCode,
 	input opcodes::opcodes_t OpCode,
 	input wire  Sw8,
@@ -21,9 +21,9 @@ import opcodes::*;
 typedef enum logic [1:0] {Fetch, Read, Execute} state_t;
 state_t state;
 
-always_ff @ (posedge Clock or posedge Reset)
+always_ff @ (posedge Clock or negedge nReset)
 begin
-	if(Reset)
+	if(!nReset)
 		state <= Fetch;
 	else
 	begin
@@ -102,12 +102,12 @@ begin
 			PcSel  = PcJmp;
 			AluOp  = ALU_ADD;
 		end
-	JMPI  : begin
-			Op1Sel = 1; //immediate
-			Op2Sel = 1; //PC
-			PcSel  = PcJmp;
-			AluOp  = ALU_ADD;
-		end
+//	JMPI  : begin
+//			Op1Sel = 1; //immediate
+//			Op2Sel = 1; //PC
+//			PcSel  = PcJmp;
+//			AluOp  = ALU_ADD;
+//		end
 		default:
 			PcSel = PcInc;
 			

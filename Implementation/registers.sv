@@ -5,7 +5,7 @@
 
 
 module registers #(parameter n = 8, parameter addr_width = 5, parameter regcount = 10) ( //n - data bus width, addr_width - width of the address bus, regcount - number of registers
-	input wire  Clock, Reset, WE,  //control signals
+	input wire  Clock, WE,  //control signals
 	output logic [n-1:0] Rd1, //output data
 	input wire  [addr_width - 1 :0] Rs1,//input addresses
 	input wire  [n-1:0] Data //input data

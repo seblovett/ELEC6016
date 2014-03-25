@@ -5,7 +5,7 @@
 `include "options.sv";
 
 module cpu #(parameter n = 8) ( //n - bus width
-	input wire Clock, Reset, 
+	input wire Clock, nReset, 
 	input wire [9:0] Switches,
 `ifdef demo
 	output logic [9:0] LEDs
@@ -38,7 +38,7 @@ ram r (.Clock(Clock), .Address(MemAddr), .Data(MemData));
 control c 
 (
 	.Clock(Clock),
-	.Reset(Reset),
+	.nReset(nReset),
 	.RegWe(RegWe),
 	.AluOp(AluOp),
 	.OpCode(opcodes_t'(MemData[7:4])),
@@ -59,7 +59,7 @@ datapath d
 	.Switches(Switches[7:0]),
 	.LEDs(LEDs[7:0]),
 	.Clock(Clock),
-	.Reset(Reset),
+	.nReset(nReset),
 	.RegWe(RegWe),
 	.AluOp(AluOp),
 	.WDataSel(WDataSel),
