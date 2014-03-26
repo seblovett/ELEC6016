@@ -5,17 +5,6 @@ from optparse import OptionParser
 import re
 import string
 opcodes = {
-    "WAIT0" : 2,
-    "WAIT1" : 3,
-    "STSW" : 4,
-    "JMPA" : 6,
-    "PASSA" : 8,
-    "LUI" : 9,
-    "ADD" : 10,
-    "ADDI" : 11,
-    "MULT" : 12,
-    "STACC" :14
-
     }
 
 def ConvertToBin(x, length):
@@ -53,6 +42,44 @@ def assembleLine(Line):
     hexline = ''.join("%x" % string.atoi(bincode,2))
     print hexline
     return hexline
+def assemble(infile, outfile):
+        infile = open(options.input, 'r')
+        indata = infile.read()
+        infile.close()
+        indata = indata.split("\n")
+        #print indata
+        outfile = open(options.output, 'w')
+        for Line in indata:
+                print Line
+                if Line != "":
+                        hexout = assembleLine(Line)
+                        hexout = hexout + "  // " + Line + "\n"
+                        outfile.write(hexout)
+        outfile.close()
+
+def getOpcodes():
+        opcodessvh_f = open("opcodes.sv", 'r')
+        opcodessv = opcodessvh_f.read()
+        print opcodessv
+        m = re.search("typedef enum logic \[3.*opcodes_t;", opcodessv, re.DOTALL)
+        if m:
+                #print m.group()
+                td = m.group()
+                td = "".join(td.split())
+                td = td.replace("typedefenumlogic[3:0]{", '')
+                td = td.replace("}opcodes_t;", '')
+                td = td.replace("4'd", "")
+                td = td.split(",")
+                
+                print td
+                for t in td:
+                        print t
+                        if t[0] != '/': #we haven't previously removed it
+                                op = t.split("=") #split on the equals
+                                opcodes[op[0]] = int(op[1])
+                print opcodes
+        else:
+                print("Nothing found")
 if "__main__" == __name__:
     parser = OptionParser()
     parser.add_option("-i", "--asm", dest="input",
@@ -62,7 +89,7 @@ if "__main__" == __name__:
     
     (options, args) = parser.parse_args()
 
-#    options.input = "transform.asm"
+    options.input = "transform.asm"
     if (options.input == None):
         print("No Input file given")
         parser.print_help()
@@ -75,17 +102,6 @@ if "__main__" == __name__:
         opfile = ".".join(opfile)
         options.output = opfile
     print options.output
-
-    infile = open(options.input, 'r')
-    indata = infile.read()
-    infile.close()
-    indata = indata.split("\n")
-    #print indata
-    outfile = open(options.output, 'w')
-    for Line in indata:
-        print Line
-        if Line != "":
-            hexout = assembleLine(Line)
-            hexout = hexout + "  // " + Line + "\n"
-            outfile.write(hexout)
-    outfile.close()
+    getOpcodes()
+    assemble(options.input, options.output)
+    
