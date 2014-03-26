@@ -16,7 +16,8 @@ module datapath #(parameter n = 8) (
 timeunit 1ns; timeprecision 1ps;
 import opcodes::*;
 
-logic [n-1:0] AluA, Imm, WData, Pc, Acc;
+logic [n-1:0] AluA, Imm, WData, Acc;
+logic [5:0] Pc;
 wire  [n-1:0]  RegData, AccIn;
 
 assign Imm  = (ImmSel) ? {MemData[3:0], 4'b0000} : { 4'b0000, MemData[3:0]};
@@ -53,7 +54,7 @@ registers #(.n(n), .addr_width(4), .regcount(11) )
  r ( 
         .Clock(Clock), 
 //	.nReset(nReset), 
-	.WE   (RegWe),  //control signals
+			.WE   (RegWe),  //control signals
         .Rs1  (MemData[3:0]), 
         .Rd1  (RegData), 
         .Data (WData)
