@@ -14,16 +14,17 @@ module cpu #(parameter n = 8) ( //n - bus width
 `endif	
 	);
 
+	parameter pc_n = 6;
 timeunit 1ns; timeprecision 1ps;
 import opcodes::*;
 
 alu_functions_t AluOp;
 PcSel_t PcSel;
 logic[n-1:0] MemData;
-wire [n-1:0] MemAddr; 
+wire [pc_n-1:0] MemAddr; 
 wire RegWe, WDataSel, AccStore, Op1Sel, ImmSel;
 
-ram r (.Clock(Clock), .Address(MemAddr), .Data(MemData));
+ram #(.pc_n(pc_n) ) r (.Clock(Clock), .Address(MemAddr), .Data(MemData));
 
 `ifdef demo
 	always_comb
@@ -51,13 +52,13 @@ control c
 	.ImmSel(ImmSel)
 );
 
-datapath d
+datapath #( .n(n),  .pc_n(pc_n)) d
 (
 	.ImmSel(ImmSel),
 	.MemData(MemData),
-	.MemAddr(MemAddr),
-	.Switches(SW[7:0]),
-	.LEDs(LED[7:0]),
+	.Pc(MemAddr),
+	.Switches(SW[n-1:0]),
+	.LEDs(LED[n-1:0]),
 	.Clock(Clock),
 	.nReset(nReset),
 	.RegWe(RegWe),

@@ -4,9 +4,10 @@
 // <+Last Edited: Tue 25 Feb 2014 20:55:37 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
-module datapath #(parameter n = 8) (
+module datapath #(parameter n = 8, parameter pc_n = 5) (
 	input wire [n-1:0] MemData, Switches,
-	output logic [n-1:0] MemAddr, LEDs,
+	output logic [pc_n-1:0] Pc, 
+	output logic [n-1 : 0] LEDs,
 	input wire  Clock, nReset, RegWe, ImmSel, WDataSel, AccStore, Op1Sel, //Op2Sel,
 	input opcodes::alu_functions_t AluOp,
 	input opcodes::PcSel_t PcSel
@@ -16,7 +17,6 @@ module datapath #(parameter n = 8) (
 timeunit 1ns; timeprecision 1ps;
 import opcodes::*;
 
-logic [4:0] Pc;
 logic [n-1:0] AluA, Imm, WData, Acc;
 wire  [n-1:0]  RegData, AccIn;
 
@@ -33,7 +33,7 @@ begin : PcReg
 	else
 		case (PcSel)
 			PcInc: Pc <= Pc + 1'd1;
-			PcJmp: Pc <= AccIn; //jump to ALU result
+			PcJmp: Pc <= AccIn[pc_n -1 : 0]; //jump to ALU result
 		endcase
 end
 assign MemAddr = Pc;
