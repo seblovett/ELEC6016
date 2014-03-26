@@ -16,8 +16,7 @@ module datapath #(parameter n = 8) (
 timeunit 1ns; timeprecision 1ps;
 import opcodes::*;
 
-logic [n-1:0] AluA, Imm, WData, Acc;
-logic [5:0] Pc;
+logic [n-1:0] AluA, Imm, WData, Pc, Acc;
 wire  [n-1:0]  RegData, AccIn;
 
 assign Imm  = (ImmSel) ? {MemData[3:0], 4'b0000} : { 4'b0000, MemData[3:0]};
