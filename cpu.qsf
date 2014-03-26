@@ -80,9 +80,6 @@ set_location_assignment PIN_H5 -to SW[1]
 set_location_assignment PIN_J6 -to SW[0]
 set_location_assignment PIN_F1 -to nReset
 set_location_assignment PIN_G21 -to Clock
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name SYSTEMVERILOG_FILE Implementation/options.sv
 set_global_assignment -name SYSTEMVERILOG_FILE Implementation/picoMIPS4test.sv
 set_global_assignment -name SYSTEMVERILOG_FILE Implementation/counter.sv
@@ -94,4 +91,7 @@ set_global_assignment -name SYSTEMVERILOG_FILE Implementation/cpu.sv
 set_global_assignment -name SYSTEMVERILOG_FILE Implementation/control.sv
 set_global_assignment -name SYSTEMVERILOG_FILE Implementation/opcodes.sv
 set_global_assignment -name SYSTEMVERILOG_FILE Implementation/alu.sv
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
