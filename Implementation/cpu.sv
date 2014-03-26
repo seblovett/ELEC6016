@@ -6,11 +6,11 @@
 
 module cpu #(parameter n = 8) ( //n - bus width
 	input wire Clock, nReset, 
-	input wire [9:0] Switches,
+	input wire [9:0] SW,
 //`ifdef demo
 //	output logic [9:0] LEDs
 //`else
-	output logic [7: 0] LEDs
+	output logic [7: 0] LED
 //`endif	
 	);
 
@@ -29,9 +29,9 @@ ram r (.Clock(Clock), .Address(MemAddr), .Data(MemData));
 	always_comb
 	begin
 		case (opcodes_t'(MemData[7:4]))
-			WAIT0: LEDs[9:8] = 2'b01;
-			WAIT1: LEDs[9:8] = 2'b10;
-			default: LEDs[9:8] = 2'b00;
+			WAIT0: LED[9:8] = 2'b01;
+			WAIT1: LED[9:8] = 2'b10;
+			default: LED[9:8] = 2'b00;
 		endcase
 	end
 `endif
@@ -45,7 +45,7 @@ control c
 	.WDataSel(WDataSel),
 	.PcSel(PcSel),
 	.AccStore(AccStore),
-	.Sw8(Switches[8]),
+	.Sw8(SW[8]),
 	.Op1Sel(Op1Sel),
 //	.Op2Sel(Op2Sel),
 	.ImmSel(ImmSel)
@@ -56,8 +56,8 @@ datapath d
 	.ImmSel(ImmSel),
 	.MemData(MemData),
 	.MemAddr(MemAddr),
-	.Switches(Switches[7:0]),
-	.LEDs(LEDs[7:0]),
+	.Switches(SW[7:0]),
+	.LEDs(LED[7:0]),
 	.Clock(Clock),
 	.nReset(nReset),
 	.RegWe(RegWe),
