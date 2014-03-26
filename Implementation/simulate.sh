@@ -35,6 +35,8 @@ if [ "gui" == $gui ]; then
 	if [ -f "${module}.tcl" ]; then
 		cmd="$cmd +tcl+${module}.tcl"
 	fi
+else
+	cmd="$cmd -exit"
 fi
 #HSL: much simpler
 if [ -f "${module}_stim.sv" ]; then
