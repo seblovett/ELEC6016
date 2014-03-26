@@ -12,16 +12,9 @@
   `define prog_file  "transform.hex"
 `endif
 
-`ifdef ram_access_time
-  // already defined - do nothing
-`else
-  `define ram_access_time 500ns
-`endif
-
-
 module ram(
 	input wire Clock,
-	input wire [7:0] Address,
+	input wire [4:0] Address,
 	output logic [7:0] Data
   );
 
@@ -30,7 +23,7 @@ timeprecision 100ps;
 
 //wire [10:0] Address = Bus.Address[10:0];  
 
-logic [7:0] Data_stored [ 127 : 0 ];
+logic [7:0] Data_stored [ 64 : 0 ];
 
 initial
   #1ns // This delay allows for program file to
