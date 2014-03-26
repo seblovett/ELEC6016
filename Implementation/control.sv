@@ -35,17 +35,23 @@ begin
 	end
 end
 
+assign AccStore = OpCode[3] & (state == Execute);
+assign Op1Sel = OpCode[2] ^ OpCode[3];
+assign AluOp = alu_functions_t'({OpCode[1], OpCode[0]});
+assign RegWe = !(OpCode[3] | OpCode[2] | OpCode[1]);
+assign WDataSel = !(OpCode[1] | OpCode[0]);
+assign ImmSel = !(OpCode[0] | OpCode[1]);
 always_comb
 begin
 	//some defaults
-	RegWe = 0;
-	WDataSel = 0;
+	//RegWe = 0;
+	//WDataSel = 0;
 	PcSel = PcWait;
-	AluOp = ALU_NOOP;
-	AccStore = 0;
-	Op1Sel = 0;
+	//AluOp = ALU_NOOP;
+	//AccStore = 0;
+	//Op1Sel = 0;
 	//Op2Sel = 0;
-	ImmSel = 0;
+	//ImmSel = 0;
 	if (state == Execute)
 	begin
 	PcSel = PcInc;
@@ -57,57 +63,11 @@ begin
 	WAIT1 :	begin
 			if(Sw8) PcSel = PcWait;
 		end
-	STSW  :	begin
-			WDataSel = 1; //Choose switches
-			RegWe    = 1; //Write to Reg
-		end
-//	LEDS  :		LedStore = 1;
-	PASSA :	begin
-			AluOp =  ALU_A; //set alu op
-			AccStore = 1;   //store to acc
-		end
-	ADD   :	begin
-			AluOp = ALU_ADD;
-			AccStore = 1;
-		end
-	LUI   : begin
-			Op1Sel = 1; //choose immediate
-			AluOp = ALU_A; //pass through
-			AccStore = 1;
-			ImmSel = 1; 
-		end
-	ADDI  : begin
-			Op1Sel = 1;
-			AluOp = ALU_ADD;
-			AccStore = 1;
-			//ImmSel = 0; 
-		end
-	MULT  :	begin
-			AluOp = ALU_MULT;
-			AccStore = 1;
-		end
-	STACC :	begin	
-			//WDataSel = 0; // choose the ACC
-			RegWe = 1;
-		end
-//	JMP   : begin
-//			Op1Sel = 0; //register
-//			Op2Sel = 1; //PC
-//			PcSel  = PcJmp;
-//			AluOp  = ALU_ADD;
-//		end
 	JMPA  : begin
-			Op1Sel = 1; //immediate
-
+			//Op1Sel = 1; //immediate
 			PcSel  = PcJmp;
-			AluOp  = ALU_ADD;
+			//AluOp  = ALU_ADD;
 		end
-//	JMPI  : begin
-//			Op1Sel = 1; //immediate
-//			Op2Sel = 1; //PC
-//			PcSel  = PcJmp;
-//			AluOp  = ALU_ADD;
-//		end
 		default:
 			PcSel = PcInc;
 			
