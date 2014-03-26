@@ -1,20 +1,20 @@
 94	//;	LUI 4; load constants
 B0	//;	ADDI 0
-E0	//;	STACC R0 ; a11
+E0	//;	STACC R0 ; a11 = 0.5 = x40
+99	//;	LUI 9; 
+B0	//;	ADDI 0
+E1	//;	STACC R1 ; a12 = -0.875 = x90
+99	//;	LUI 9; 
+B0	//;	ADDI 0
+E2	//;	STACC R2 ; a21 = -0.875 = x90
+96	//;	LUI 6
+B0	//;	ADDI 0
+E3	//;	STACC R3 ; a22 = 0.75 = x60
 90	//;	LUI 0; 
-B0	//;	ADDI 0
-E1	//;	STACC R1 ; a12
-90	//;	LUI 4; 
-B0	//;	ADDI 0
-E2	//;	STACC R2 ; a21
-94	//;	LUI 0
-B0	//;	ADDI 0
-E3	//;	STACC R3 ; a22
-90	//;	LUI 0; 
-BA	//;	ADDI 10
+B5	//;	ADDI 5
 E4	//;	STACC R4 ; b1
 90	//;	LUI 0; 
-BA	//;	ADDI 1
+BC	//;	ADDI C
 E5	//;	STACC R5 ; b2
 20	//;	WAIT0 ;wait while sw8 == 0 ; LOOP
 46	//;	STSW R6 ; store switches to R6 ; X

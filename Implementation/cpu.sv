@@ -1,17 +1,17 @@
 // cpu.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:12:41 GMT
-// <+Last Edited: Tue 25 Feb 2014 18:22:56 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
-`include "options.sv";
+// <+Last Edited: Wed 26 Mar 2014 12:21:31 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
+//`include "options.sv"
 
 module cpu #(parameter n = 8) ( //n - bus width
 	input wire Clock, nReset, 
 	input wire [9:0] Switches,
-`ifdef demo
-	output logic [9:0] LEDs
-`else
-	output logic [n-1: 0] LEDs
-`endif	
+//`ifdef demo
+//	output logic [9:0] LEDs
+//`else
+	output logic [7: 0] LEDs
+//`endif	
 	);
 
 timeunit 1ns; timeprecision 1ps;
@@ -65,9 +65,10 @@ datapath d
 	.WDataSel(WDataSel),
 	.PcSel(PcSel),
 	.AccStore(AccStore),
-	.Op1Sel(Op1Sel),
+	.Op1Sel(Op1Sel)
 //	.Op2Sel(Op2Sel)
 );
+
 
 endmodule
 
