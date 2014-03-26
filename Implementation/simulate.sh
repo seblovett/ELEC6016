@@ -48,6 +48,9 @@ else
 fi
 #cmd="$cmd +libext+.sv"
 
+#assemble the transform
+python assembler.py -i transform.asm
+
 echo $cmd
 $cmd  # Call SimVision
 

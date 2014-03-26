@@ -1,3 +1,5 @@
+#!/usr/bin/python 
+
 import os
 from optparse import OptionParser
 import re
@@ -12,7 +14,7 @@ opcodes = {
     "ADD" : 10,
     "ADDI" : 11,
     "MULT" : 12,
-    "STACC" :14,
+    "STACC" :14
 
     }
 
@@ -60,7 +62,7 @@ if "__main__" == __name__:
     
     (options, args) = parser.parse_args()
 
-    options.input = "transform.asm"
+#    options.input = "transform.asm"
     if (options.input == None):
         print("No Input file given")
         parser.print_help()
