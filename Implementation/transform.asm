@@ -1,14 +1,10 @@
 LUI 4; load constants
-ADDI 0
 STACC 0 ; a11 = 0.5 = x40
 LUI 9; 
-ADDI 0
 STACC 1 ; a12 = -0.875 = x90
 LUI 9; 
-ADDI 0
 STACC 2 ; a21 = -0.875 = x90
 LUI 6
-ADDI 0
 STACC 3 ; a22 = 0.75 = x60
 LUI 0; 
 ADDI 5
