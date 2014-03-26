@@ -7,11 +7,11 @@
 module cpu #(parameter n = 8) ( //n - bus width
 	input wire Clock, nReset, 
 	input wire [9:0] SW,
-//`ifdef demo
-//	output logic [9:0] LEDs
-//`else
+`ifdef demo
+	output logic [9:0] LED
+`else
 	output logic [7: 0] LED
-//`endif	
+`endif	
 	);
 
 timeunit 1ns; timeprecision 1ps;
