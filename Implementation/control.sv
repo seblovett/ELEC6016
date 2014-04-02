@@ -1,7 +1,7 @@
 // control.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:21:44 GMT
-// <+Last Edited: Wed 02 Apr 2014 11:13:54 BST by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Wed 02 Apr 2014 11:15:33 BST by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module control (
@@ -35,7 +35,7 @@ begin
 	end
 end
 
-assign AluOp = {OpCode[1], OpCode[0]};
+assign AluOp = alu_functions_t'{OpCode[1], OpCode[0]};
 
 always_comb
 begin
