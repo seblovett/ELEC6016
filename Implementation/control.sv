@@ -1,7 +1,7 @@
 // control.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:21:44 GMT
-// <+Last Edited: Wed 02 Apr 2014 11:25:18 BST by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Wed 02 Apr 2014 11:28:27 BST by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module control (
@@ -37,7 +37,7 @@ end
 
 assign AluOp = alu_functions_t'{OpCode[1], OpCode[0]};
 assign WDataSel = !(OpCode[0] | OpCode[1]);
-
+assign Op1Sel = OpCode[2] ^ OpCode[3];
 
 assign AccStore = (state == Execute) ? OpCode [3] : 1'b0;
 always_comb
@@ -48,7 +48,7 @@ begin
 	PcSel = PcWait;
 	//AluOp = ALU_NOOP;
 	//AccStore = 0;
-	Op1Sel = 0;
+//	Op1Sel = 0;
 	//Op2Sel = 0;
 	ImmSel = 0;
 	if (state == Execute)
@@ -76,13 +76,13 @@ begin
 			//AccStore = 1;
 		end
 	LUI   : begin
-			Op1Sel = 1; //choose immediate
+//			Op1Sel = 1; //choose immediate
 			//AluOp = ALU_A; //pass through
 			//AccStore = 1;
 			ImmSel = 1; 
 		end
 	ADDI  : begin
-			Op1Sel = 1;
+//			Op1Sel = 1;
 			//AluOp = ALU_ADD;
 			//AccStore = 1;
 			//ImmSel = 0; 
@@ -102,7 +102,7 @@ begin
 //			AluOp  = ALU_ADD;
 //		end
 	JMPA  : begin
-			Op1Sel = 1; //immediate
+//			Op1Sel = 1; //immediate
 
 			PcSel  = PcJmp;
 			//AluOp  = ALU_ADD;
