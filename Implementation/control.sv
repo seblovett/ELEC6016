@@ -1,7 +1,7 @@
 // control.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:21:44 GMT
-// <+Last Edited: Wed 02 Apr 2014 11:28:27 BST by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Wed 02 Apr 2014 11:29:58 BST by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module control (
@@ -40,10 +40,11 @@ assign WDataSel = !(OpCode[0] | OpCode[1]);
 assign Op1Sel = OpCode[2] ^ OpCode[3];
 
 assign AccStore = (state == Execute) ? OpCode [3] : 1'b0;
+assign RegWe    = (state == Execute) ? !(OpCode [3] | OpCode[2] | OpCode[1]) : 1'b0;
 always_comb
 begin
 	//some defaults
-	RegWe = 0;
+	//RegWe = 0;
 //	WDataSel = 0;
 	PcSel = PcWait;
 	//AluOp = ALU_NOOP;
@@ -64,7 +65,7 @@ begin
 		end
 	STSW  :	begin
 //			WDataSel = 1; //Choose switches
-			RegWe    = 1; //Write to Reg
+	//		RegWe    = 1; //Write to Reg
 		end
 //	LEDS  :		LedStore = 1;
 	PASSA :	begin
@@ -93,7 +94,7 @@ begin
 		end
 	STACC :	begin	
 			//WDataSel = 0; // choose the ACC
-			RegWe = 1;
+	//		RegWe = 1;
 		end
 //	JMP   : begin
 //			Op1Sel = 0; //register
