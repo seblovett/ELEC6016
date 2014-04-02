@@ -1,7 +1,7 @@
 // control.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:21:44 GMT
-// <+Last Edited: Sun 02 Mar 2014 22:28:42 GMT by hl13g10 on hart2.ecs.soton.ac.uk +>
+// <+Last Edited: Wed 02 Apr 2014 11:13:54 BST by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module control (
@@ -35,13 +35,15 @@ begin
 	end
 end
 
+assign AluOp = {OpCode[1], OpCode[0]};
+
 always_comb
 begin
 	//some defaults
 	RegWe = 0;
 	WDataSel = 0;
 	PcSel = PcWait;
-	AluOp = ALU_NOOP;
+	//AluOp = ALU_NOOP;
 	AccStore = 0;
 	Op1Sel = 0;
 	//Op2Sel = 0;
@@ -63,27 +65,27 @@ begin
 		end
 //	LEDS  :		LedStore = 1;
 	PASSA :	begin
-			AluOp =  ALU_A; //set alu op
+			//AluOp =  ALU_A; //set alu op
 			AccStore = 1;   //store to acc
 		end
 	ADD   :	begin
-			AluOp = ALU_ADD;
+			//AluOp = ALU_ADD;
 			AccStore = 1;
 		end
 	LUI   : begin
 			Op1Sel = 1; //choose immediate
-			AluOp = ALU_A; //pass through
+			//AluOp = ALU_A; //pass through
 			AccStore = 1;
 			ImmSel = 1; 
 		end
 	ADDI  : begin
 			Op1Sel = 1;
-			AluOp = ALU_ADD;
+			//AluOp = ALU_ADD;
 			AccStore = 1;
 			//ImmSel = 0; 
 		end
 	MULT  :	begin
-			AluOp = ALU_MULT;
+			//AluOp = ALU_MULT;
 			AccStore = 1;
 		end
 	STACC :	begin	
@@ -100,7 +102,7 @@ begin
 			Op1Sel = 1; //immediate
 
 			PcSel  = PcJmp;
-			AluOp  = ALU_ADD;
+			//AluOp  = ALU_ADD;
 		end
 //	JMPI  : begin
 //			Op1Sel = 1; //immediate
