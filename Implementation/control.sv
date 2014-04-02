@@ -1,7 +1,7 @@
 // control.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:21:44 GMT
-// <+Last Edited: Wed 02 Apr 2014 15:58:12 BST by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Wed 02 Apr 2014 17:27:24 BST by hl13g10 on octopus +>
 
 
 module control (
@@ -36,16 +36,27 @@ begin
 end
 logic [3:0] Op;
 assign Op = OpCode;
+//The below lines are a listing in the report, do not move
 assign AluOp = alu_functions_t'({Op[1], Op[0]});
 assign WDataSel = ~(Op[0] | Op[1]);
 assign Op1Sel = ((Op[2]) ^ (Op[3]));
 assign ImmSel = ~(Op[0] | Op[1]);
+assign PcSel = (OpCode == JMPA) ? PcJmp : PcInc;
+always_comb 
+begin
+	AccWe = 1'b0;
+	RegWe = 1'b0;
+	if (state == Execute) 
+	begin
+		AccWe = Op[3];
+		RegWe =  ~(Op[3] | Op[2] | Op[1]);
+	end
+end
+//end of listing
 
-assign AccWe = (state == Execute) ? (Op[3]) : 1'b0;
-assign RegWe    = (state == Execute) ? ~(Op[3] | Op[2] | Op[1]) : 1'b0;
 always_comb
 begin
-	PcSel = PcInc;
+//	PcSel = PcInc;
 	PcWe = 0;
 	
 	if (state == Execute)
@@ -59,10 +70,10 @@ begin
 				if(Sw8) PcWe = 0;
 			end
 		JMPA  : begin
-				PcSel  = PcJmp;
+//				PcSel  = PcJmp;
 			end
-		default:
-				PcSel = PcInc;
+	//	default:
+//				PcSel = PcInc;
 		endcase
 	end //if
 end
