@@ -1,7 +1,7 @@
 // cpu.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:12:41 GMT
-// <+Last Edited: Wed 02 Apr 2014 11:36:47 BST by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Wed 02 Apr 2014 15:59:13 BST by hl13g10 on hind.ecs.soton.ac.uk +>
 //`include "options.sv"
 
 module cpu #(parameter n = 8) ( //n - bus width
@@ -22,7 +22,7 @@ alu_functions_t AluOp;
 PcSel_t PcSel;
 logic[n-1:0] MemData;
 wire [pc_n-1:0] MemAddr; 
-wire RegWe, WDataSel, AccStore, Op1Sel, ImmSel, PcWe;
+wire RegWe, WDataSel, AccWe, Op1Sel, ImmSel, PcWe;
 
 ram #(.pc_n(pc_n) ) r (.Clock(Clock), .Address(MemAddr), .Data(MemData));
 
@@ -45,7 +45,7 @@ control c
 	.OpCode(opcodes_t'(MemData[7:4])),
 	.WDataSel(WDataSel),
 	.PcSel(PcSel),
-	.AccStore(AccStore),
+	.AccWe(AccWe),
 	.Sw8(SW[8]),
 	.Op1Sel(Op1Sel),
 //	.Op2Sel(Op2Sel),
@@ -66,7 +66,7 @@ datapath #( .n(n),  .pc_n(pc_n)) d
 	.AluOp(AluOp),
 	.WDataSel(WDataSel),
 	.PcSel(PcSel),
-	.AccStore(AccStore),
+	.AccWe(AccWe),
 	.Op1Sel(Op1Sel),
 	.PcWe(PcWe)
 //	.Op2Sel(Op2Sel)

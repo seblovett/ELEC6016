@@ -1,14 +1,14 @@
 // datapath.sv
 // Writen by seblovett
 // Date Created Tue 25 Feb 2014 17:09:55 GMT
-// <+Last Edited: Wed 02 Apr 2014 11:35:20 BST by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Wed 02 Apr 2014 15:59:26 BST by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module datapath #(parameter n = 8, parameter pc_n = 5) (
 	input wire [n-1:0] MemData, Switches,
 	output logic [pc_n-1:0] Pc, 
 	output logic [n-1 : 0] LEDs,
-	input wire  Clock, nReset, RegWe, ImmSel, WDataSel, AccStore, Op1Sel, PcWe,//Op2Sel,
+	input wire  Clock, nReset, RegWe, ImmSel, WDataSel, AccWe, Op1Sel, PcWe,//Op2Sel,
 	input opcodes::alu_functions_t AluOp,
 	input opcodes::PcSel_t PcSel
 
@@ -45,7 +45,7 @@ begin : AccReg
 	if (!nReset)
 		Acc = 0;
 	else
-		if(AccStore)
+		if(AccWe)
 			Acc <= AccIn;
 end
 
