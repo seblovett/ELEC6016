@@ -1,7 +1,7 @@
 // cpu_stim.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:23:59 GMT
-// <+Last Edited: Wed 26 Mar 2014 13:46:25 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Wed 02 Apr 2014 11:08:50 BST by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module cpu_stim ();
@@ -27,31 +27,33 @@ end
 //reset
 initial
 begin
-	//SW = 10'b0000010000;
         nReset = 1;
         #100 nReset = 0;
         #1000 nReset = 1;
-//	#50000 SW[8] = 1;//load x
-//	#3000  SW[8] = 0;
-//	#2000  SW[8] = 1;//load y
-//	#2000  SW[8] = 0; //go!
-//	#30000 SW[8] = 1; //x shown, now show y
-//	#2000  SW[8] = 0; //restart!
-	//#100000 $stop();
 end
 int errors;
 task CheckTransform;// (logic[7:0] x, y);
 	input logic [7:0] x1,y1,x2,y2;
+	$display("x1 = %d\ny1 = %d", x1,y1);
 	SW[7:0] = x1;
 	#60000 SW[8] = 1; //load x1
 	#10000 SW[8:0] = y1;
 	#10000 SW[8] = 1; //load y1
 	#10000 SW[8] = 0; //Go!
-	#60000  assert(LED[7:0] == x2) else begin $display("X Fail");
-			errors++; end
+	#60000  assert(LED[7:0] == x2)	
+		$display("x2 = %d", x2);
+	else begin 
+		$display("X Fail.\nx2 = %d. (Should be %d)", LED[7:0], x2);
+		errors++; 
+	end
+
 	SW[8] = 1; //show y
-	#5000	assert(LED[7:0] == y2) else begin $display("Y Fail");
-			errors++; end
+	#5000	assert(LED[7:0] == y2) 
+		$display("y2 = %d", y2);
+	else begin 
+		$display("Y Fail.\ny2 = %d. (Should be %d)", LED[7:0], y2);
+		errors++; 
+	end
 	#3000 SW = 0;
 	#10000 ;
 endtask
