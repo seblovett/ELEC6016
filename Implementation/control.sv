@@ -1,7 +1,7 @@
 // control.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:21:44 GMT
-// <+Last Edited: Wed 02 Apr 2014 11:15:33 BST by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Wed 02 Apr 2014 11:18:40 BST by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module control (
@@ -36,7 +36,7 @@ begin
 end
 
 assign AluOp = alu_functions_t'{OpCode[1], OpCode[0]};
-
+assign AccStore = (state == Execute) ? OpCode [3] : 1'b0;
 always_comb
 begin
 	//some defaults
@@ -44,7 +44,7 @@ begin
 	WDataSel = 0;
 	PcSel = PcWait;
 	//AluOp = ALU_NOOP;
-	AccStore = 0;
+	//AccStore = 0;
 	Op1Sel = 0;
 	//Op2Sel = 0;
 	ImmSel = 0;
@@ -66,27 +66,27 @@ begin
 //	LEDS  :		LedStore = 1;
 	PASSA :	begin
 			//AluOp =  ALU_A; //set alu op
-			AccStore = 1;   //store to acc
+			//AccStore = 1;   //store to acc
 		end
 	ADD   :	begin
 			//AluOp = ALU_ADD;
-			AccStore = 1;
+			//AccStore = 1;
 		end
 	LUI   : begin
 			Op1Sel = 1; //choose immediate
 			//AluOp = ALU_A; //pass through
-			AccStore = 1;
+			//AccStore = 1;
 			ImmSel = 1; 
 		end
 	ADDI  : begin
 			Op1Sel = 1;
 			//AluOp = ALU_ADD;
-			AccStore = 1;
+			//AccStore = 1;
 			//ImmSel = 0; 
 		end
 	MULT  :	begin
 			//AluOp = ALU_MULT;
-			AccStore = 1;
+			//AccStore = 1;
 		end
 	STACC :	begin	
 			//WDataSel = 0; // choose the ACC
