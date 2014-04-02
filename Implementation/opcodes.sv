@@ -4,7 +4,7 @@ package opcodes;
 
 
 typedef enum logic [1:0] {ALU_A = 2'd0, ALU_ADD = 2'd1, ALU_MULT = 2'd3, ALU_NOOP = 2'd2} alu_functions_t;
-typedef enum logic [1:0] {PcWait = 2'd2, PcInc = 2'd0, PcJmp = 2'd1} PcSel_t;
+typedef enum logic  {PcInc = 1'd0, PcJmp = 1'd1} PcSel_t;
 typedef enum logic [3:0] {
 //	NOOP  = 4'd0,
 	STSW  = 4'd0,

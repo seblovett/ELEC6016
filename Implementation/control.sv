@@ -1,7 +1,7 @@
 // control.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:21:44 GMT
-// <+Last Edited: Wed 02 Apr 2014 11:33:44 BST by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Wed 02 Apr 2014 12:02:00 BST by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module control (
@@ -9,7 +9,7 @@ module control (
 	//input wire  opcodes::opcodes_t OpCode,
 	input opcodes::opcodes_t OpCode,
 	input wire  Sw8,
-	output logic RegWe, WDataSel, AccStore, Op1Sel, ImmSel, //Op2Sel,
+	output logic RegWe, WDataSel, AccStore, Op1Sel, ImmSel, PcWe,//Op2Sel,
 	output opcodes::alu_functions_t AluOp,
 	output opcodes::PcSel_t PcSel
 	);
@@ -47,7 +47,8 @@ begin
 	//some defaults
 	//RegWe = 0;
 //	WDataSel = 0;
-	PcSel = PcWait;
+	PcSel = PcInc;
+	PcWe = 0;
 	//AluOp = ALU_NOOP;
 	//AccStore = 0;
 //	Op1Sel = 0;
@@ -55,14 +56,14 @@ begin
 //	ImmSel = 0;
 	if (state == Execute)
 	begin
-	PcSel = PcInc;
+	PcWe = 1;
 	case(OpCode)
 	//NOOP  :	//Use defaults
 	WAIT0 :	begin
-			if(~Sw8) PcSel = PcWait;
+			if(~Sw8) PcWe = 0;
 		end
 	WAIT1 :	begin
-			if(Sw8) PcSel = PcWait;
+			if(Sw8) PcWe = 0;
 		end
 	STSW  :	begin
 //			WDataSel = 1; //Choose switches
