@@ -1,7 +1,7 @@
 // control.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:21:44 GMT
-// <+Last Edited: Wed 02 Apr 2014 12:02:00 BST by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Wed 02 Apr 2014 12:08:51 BST by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module control (
@@ -44,82 +44,22 @@ assign AccStore = (state == Execute) ? OpCode [3] : 1'b0;
 assign RegWe    = (state == Execute) ? !(OpCode [3] | OpCode[2] | OpCode[1]) : 1'b0;
 always_comb
 begin
-	//some defaults
-	//RegWe = 0;
-//	WDataSel = 0;
 	PcSel = PcInc;
 	PcWe = 0;
-	//AluOp = ALU_NOOP;
-	//AccStore = 0;
-//	Op1Sel = 0;
-	//Op2Sel = 0;
-//	ImmSel = 0;
 	if (state == Execute)
 	begin
-	PcWe = 1;
-	case(OpCode)
-	//NOOP  :	//Use defaults
-	WAIT0 :	begin
-			if(~Sw8) PcWe = 0;
-		end
-	WAIT1 :	begin
-			if(Sw8) PcWe = 0;
-		end
-	STSW  :	begin
-//			WDataSel = 1; //Choose switches
-	//		RegWe    = 1; //Write to Reg
-		end
-//	LEDS  :		LedStore = 1;
-	PASSA :	begin
-			//AluOp =  ALU_A; //set alu op
-			//AccStore = 1;   //store to acc
-		end
-	ADD   :	begin
-			//AluOp = ALU_ADD;
-			//AccStore = 1;
-		end
-	LUI   : begin
-//			Op1Sel = 1; //choose immediate
-			//AluOp = ALU_A; //pass through
-			//AccStore = 1;
-		//	ImmSel = 1; 
-		end
-	ADDI  : begin
-//			Op1Sel = 1;
-			//AluOp = ALU_ADD;
-			//AccStore = 1;
-			//ImmSel = 0; 
-		end
-	MULT  :	begin
-			//AluOp = ALU_MULT;
-			//AccStore = 1;
-		end
-	STACC :	begin	
-			//WDataSel = 0; // choose the ACC
-	//		RegWe = 1;
-		end
-//	JMP   : begin
-//			Op1Sel = 0; //register
-//			Op2Sel = 1; //PC
-//			PcSel  = PcJmp;
-//			AluOp  = ALU_ADD;
-//		end
-	JMPA  : begin
-//			Op1Sel = 1; //immediate
-
-			PcSel  = PcJmp;
-			//AluOp  = ALU_ADD;
-		end
-//	JMPI  : begin
-//			Op1Sel = 1; //immediate
-//			Op2Sel = 1; //PC
-//			PcSel  = PcJmp;
-//			AluOp  = ALU_ADD;
-//		end
-		default:
-			PcSel = PcInc;
-			
-	endcase
+		PcWe = 1;
+		case(OpCode)
+		WAIT0 :	begin
+				if(~Sw8) PcWe = 0;
+			end
+		WAIT1 :	begin
+				if(Sw8) PcWe = 0;
+			end
+		JMPA  : begin
+				PcSel  = PcJmp;
+			end
+		endcase
 	end //if
 end
 endmodule
