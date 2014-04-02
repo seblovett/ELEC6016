@@ -11,7 +11,7 @@ timeunit 1ns; timeprecision 1ps;
 
 parameter n = 8;
 logic Clock, nReset;
-logic [9:0] SW;
+logic [8:0] SW;
 wire [7: 0] LED;
 
 cpu #(.n(n)) c (.*);

@@ -37,7 +37,7 @@ begin : PcReg
 			PcJmp: Pc <= AccIn[pc_n -1 : 0]; //jump to ALU result
 		endcase
 end
-assign MemAddr = Pc;
+//assign MemAddr = Pc;
 
 //Accumulator
 always_ff @ (posedge Clock or negedge nReset)

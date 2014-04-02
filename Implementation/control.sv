@@ -34,18 +34,20 @@ begin
 		endcase
 	end
 end
+logic [3:0] Op;
+assign Op = OpCode;
+assign AluOp = alu_functions_t'({Op[1], Op[0]});
+assign WDataSel = ~(Op[0] | Op[1]);
+assign Op1Sel = ((Op[2]) ^ (Op[3]));
+assign ImmSel = ~(Op[0] | Op[1]);
 
-assign AluOp = alu_functions_t'{OpCode[1], OpCode[0]};
-assign WDataSel = !(OpCode[0] | OpCode[1]);
-assign Op1Sel = OpCode[2] ^ OpCode[3];
-assign ImmSel = !(OpCode[0] | OpCode[1]);
-
-assign AccStore = (state == Execute) ? OpCode [3] : 1'b0;
-assign RegWe    = (state == Execute) ? !(OpCode [3] | OpCode[2] | OpCode[1]) : 1'b0;
+assign AccStore = (state == Execute) ? (Op[3]) : 1'b0;
+assign RegWe    = (state == Execute) ? ~(Op[3] | Op[2] | Op[1]) : 1'b0;
 always_comb
 begin
 	PcSel = PcInc;
 	PcWe = 0;
+	
 	if (state == Execute)
 	begin
 		PcWe = 1;
@@ -59,6 +61,8 @@ begin
 		JMPA  : begin
 				PcSel  = PcJmp;
 			end
+		default:
+				PcSel = PcInc;
 		endcase
 	end //if
 end

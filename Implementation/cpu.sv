@@ -6,7 +6,7 @@
 
 module cpu #(parameter n = 8) ( //n - bus width
 	input wire Clock, nReset, 
-	input wire [9:0] SW,
+	input wire [8:0] SW,
 `ifdef demo
 	output logic [9:0] LED
 `else
@@ -22,7 +22,7 @@ alu_functions_t AluOp;
 PcSel_t PcSel;
 logic[n-1:0] MemData;
 wire [pc_n-1:0] MemAddr; 
-wire RegWe, WDataSel, AccStore, Op1Sel, ImmSel;
+wire RegWe, WDataSel, AccStore, Op1Sel, ImmSel, PcWe;
 
 ram #(.pc_n(pc_n) ) r (.Clock(Clock), .Address(MemAddr), .Data(MemData));
 

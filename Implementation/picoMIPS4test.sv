@@ -1,7 +1,7 @@
 // synthesise to run on Altera DE0 for testing and demo
 module picoMIPS4test(
   input logic Clock, nReset,  // 50MHz Altera DE0 clock
-  input logic [9:0] SW, // Switches SW0..SW9
+  input logic [8:0] SW, // Switches SW0..SW9
   output logic [9:0] LED); // LEDs
   
   logic clk; // slow clock, about 10Hz

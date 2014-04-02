@@ -5,7 +5,7 @@ module counter #(parameter n = 24) //clock divides by 2^n, adjust n if necessary
 logic [n-1:0] count;
 
 always_ff @(posedge fastclk)
-    count <= count + 1;
+    count <= count + 24'd1;
 
 assign clk = count[n-1]; // slow clock
 
