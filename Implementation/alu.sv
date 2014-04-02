@@ -1,7 +1,7 @@
 // alu.sv
 // Writen by seblovett
 // Date Created Mon 17 Feb 2014 09:18:54 GMT
-// <+Last Edited: Wed 26 Mar 2014 13:02:20 GMT by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Wed 02 Apr 2014 20:49:18 BST by seblovett on seblovett-Ubuntu +>
 
 
 module alu #(parameter n = 8) //n - data bus width
@@ -19,12 +19,12 @@ assign multout = a*b;
 
 always_comb
  begin
-	q = 0; //default case
+	//q = 0; //default case
 	unique case (Function)
 		ALU_A:		q = a;
 		ALU_ADD:	q = a + b;
 		ALU_MULT:	q = multout[14:7];
-		default:	q = 0;
+		default:	q = a;
 	endcase
 	
  end
