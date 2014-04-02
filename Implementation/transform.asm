@@ -29,7 +29,7 @@ PASSA 7 ; y1 to acc
 MULT 1 ; acc * a12
 ADD 8 ; (y1 * a12) + (x1 + a11)
 ADD 4 ; acc + b1
-STACC 9
+STACC 9 ; store to r9
 PASSA 6 ;transform - load x1 to acc
 MULT 2 ; a21 * x1
 STACC 8 ; store to r8
@@ -37,7 +37,7 @@ PASSA 7 ; y1 to acc
 MULT 3 ; acc * a22
 ADD 8 ; (y1 * a12) + (x1 + a11)
 ADD 5 ; acc + b1
-STACC 10
+STACC 10 ; store to r10
 PASSA 9 ; display x2
 WAIT0
 PASSA 10 ; display y2
