@@ -1,7 +1,7 @@
 // cpu.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:12:41 GMT
-// <+Last Edited: Wed 02 Apr 2014 15:59:13 BST by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Thu 03 Apr 2014 12:48:12 BST by hl13g10 on octopus +>
 //`include "options.sv"
 
 module cpu #(parameter n = 8) ( //n - bus width
@@ -26,6 +26,7 @@ wire RegWe, WDataSel, AccWe, Op1Sel, ImmSel, PcWe;
 
 ram #(.pc_n(pc_n) ) r (.Clock(Clock), .Address(MemAddr), .Data(MemData));
 
+//Begin listing
 `ifdef demo
 	always_comb
 	begin
@@ -36,6 +37,7 @@ ram #(.pc_n(pc_n) ) r (.Clock(Clock), .Address(MemAddr), .Data(MemData));
 		endcase
 	end
 `endif
+//endlisting
 control c 
 (
 	.Clock(Clock),
