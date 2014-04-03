@@ -1,7 +1,7 @@
 // cpu_stim.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:23:59 GMT
-// <+Last Edited: Wed 02 Apr 2014 11:08:50 BST by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Thu 03 Apr 2014 14:51:55 BST by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module cpu_stim ();
@@ -57,10 +57,27 @@ task CheckTransform;// (logic[7:0] x, y);
 	#3000 SW = 0;
 	#10000 ;
 endtask
+
+//`define a11 8'h40
+//`define a12 8'h90
+//`define a21 8'h90
+//`define a22 8'h60
+//`define b1  8'h05
+//`define b2  8'h0C
+//logic [15:0] temp1,temp2;
+//logic [7:0] x2,y2;
+//function logic [7:0] CalculateTransform(logic [7:0] x1, y1);
+//	temp1 = `a11 * x1;
+//	temp2 = `a21 * y1;
+//	x2 = temp1 + temp2 + `b1;
+//	
+//endfunction
+
 initial
 begin
 	errors = 0;
 	SW = 0;
+	//CalculateTransform(16,8);
 	CheckTransform(16,8,6,4);
 	CheckTransform(64,-64,93,-92);
 	CheckTransform(0,0,5,12);
