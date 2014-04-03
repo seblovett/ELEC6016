@@ -29,7 +29,7 @@ begin
 end
 
 int errors;
-
+//begin listing
 task WriteandRead;
 	Data =$random();
 	temp = Data;
@@ -39,9 +39,15 @@ task WriteandRead;
 	#20 WE = 0;
 	Data = $random(); //change the input
 	@ (posedge Clock) //need to wait a cycle to get the data back
-	#20 assert(Rd1 == temp) else begin errors++; $display("Write/Read Error"); end
+	#20 assert(Rd1 == temp) else begin 
+		errors++; 
+		$display("Write/Read Error"); 
+	end
 	@ (posedge Clock) //check that the data persists with new input, WE = 0;
-	#20 assert(Rd1 == temp) else begin errors++; $display("Persist Error"); end 
+	#20 assert(Rd1 == temp) else begin 
+		errors++; 
+		$display("Persist Error"); 
+	end 
 endtask
 
 int i;
