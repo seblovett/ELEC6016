@@ -5,7 +5,7 @@
 
 \section{Registers}\label{sect:regs}
 
-\todo[inline]{Design}
+%\todo[inline]{Design}
 The allocation in the instruction set allows for up to 16 general purpose registers. 
 In the program, discussed in section \ref{sect:prog}, only 11 registers are used. 
 Six are used to store the constants, two for the initial vector, two for the result and a temporary register.
@@ -17,5 +17,32 @@ This, at the expense of performance, utilised the on chip SRAM blocks.
 The design was parametrised to allow the data and address width and number of registers to be easily changed. 
 
 \todo[inline]{Explain Test Bench}
-\todo[inline]{Simulation Results}
+
+\subsection{Testbench}
+
+A task is used to do a basic test.
+The code for this task is seen in listing \ref{lstregtask}.
+A random byte of data, and a random register are chosen. 
+The data is then written to the register. 
+The input data is changed to check that the data on the output is stored in memory and assertions are used to verify. 
+The data is checked to persist after the write enable signal is inactive. 
+If an assertion fails, a global error counter is incremented.
+
+This task is then done a large amount of times to check all registers. 
+Figure \ref{fig:regsim} shows the output waveform of the simulation. 
+The error count is zero at the end of the simulation showing that the module is functioning correctly.
+
+
+
+
+\lstinputlisting[language=verilog,breaklines=true, firstline=33, lastline=51,caption={Register task for writing and reading to the register.},frame=single,label=lstregtask]{../Implementation/registers_stim.sv}
+%\todo[inline]{Simulation Results}
+
+\begin{figure}
+\includegraphics[width=\textwidth,height=\textheight]{Figures/registerssim.eps}
+\caption{Waveform simulation for register testbench}
+\label{fig:regsim}
+\end{figure}
+
+\subsection{Synthesis}
 \todo[inline]{Synthesis}
