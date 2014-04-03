@@ -1,13 +1,36 @@
 %  DE0.tex
 %  Document created by seblovett on seblovett-Ubuntu
 %  Date created: Tue 01 Apr 2014 20:11:21 BST
-%  <+Last Edited: Wed 02 Apr 2014 17:38:41 BST by hl13g10 on octopus +>
+%  <+Last Edited: Thu 03 Apr 2014 12:55:32 BST by hl13g10 on octopus +>
 
 \section{DE0 Implementation}
 
-\todo[inline]{Use of the slow clock}
-\todo[inline]{Demo define to allow for easier use during demo.}
+
+
+%\todo[inline]{Use of the slow clock}
+A counter was used to slow down the $50MHz$ clock supplied from the board. 
+This slowed the processor down to a human usable speed.
+The added logic from this is not included in the cost function.
+
+
+%\todo[inline]{Demo define to allow for easier use during demo.}
+To aid the demonstration, a small amount of extra logic is used to show if the opcode is a \texttt{WAIT} instruction. 
+This can be turned on or off by used of a \textit{`define} statement declared in the \textit{options.sv} file.
+It provides an insight in to the current state of the processor and if it is waiting for an input.
+
+This is accomplished by the code seen in listing \ref{lstleds}.
+The logic added by here is not included in the overall cost function and is added to aid the use. 
+
+
+\lstinputlisting[language=verilog, firstline=30, lastline=39,caption={Extra LED logic to show when the processor is executing a \texttt{WAIT} instruction.},frame=single,label=lstleds]{../Implementation/cpu.sv}
+
 \todo[inline]{Issues encounterd}
+
+Program Memory not allowing to be small. 
+
+
+
 \todo[inline]{Synthesised logic. Put some sexy figures in here}
+
 
 
