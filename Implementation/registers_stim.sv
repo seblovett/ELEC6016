@@ -1,7 +1,7 @@
 // registers_stim.sv
 // Writen by seblovett
 // Date Created Mon 17 Feb 2014 10:31:52 GMT
-// <+Last Edited: Thu 03 Apr 2014 13:45:50 BST by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Thu 03 Apr 2014 20:57:25 BST by hl13g10 on hind.ecs.soton.ac.uk +>
 
 
 module registers_stim ();
@@ -9,8 +9,8 @@ module registers_stim ();
 timeunit 1ns; timeprecision 1ps;
 
 parameter n = 8;
-parameter regcount = 32;
-parameter addr_width = 5;
+parameter regcount = 16;
+parameter addr_width = 4;
 
 logic Clock, WE;  //control signals
 wire  [n-1:0] Rd1;
