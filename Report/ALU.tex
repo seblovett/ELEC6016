@@ -38,7 +38,21 @@ The multiplier cell also includes 3 registers which are not utilised in this des
 
 %\todo[inline]{Operations implemented}
 %\todo[inline]{Embedded multiplier(s)}
-\todo[inline]{Explain Test bench}
-\todo[inline]{Simulation results}
+%\todo[inline]{Explain Test bench}
+
+The testbench tests each operation with ten different values of the operands. 
+An assertion then checks each result is as expected. 
+An error count is kept and the simulation is successful if this is zero at the end of the simulation.
+Figure \ref{fig:alusim} shows the waveform for the simulation. 
+It can be seen that all three operations are tested and the error count is zero at the end. 
+The fourth, undefined operation is not tested as the result does not matter. 
+
+\begin{figure}
+\includegraphics[height=\textheight]{Figures/alusim.eps}
+\caption{Simulation waveform for the ALU testbench}
+\label{fig:alusim}
+\end{figure}
+
+%\todo[inline]{Simulation results}
 \todo[inline]{Synthesis}
 
