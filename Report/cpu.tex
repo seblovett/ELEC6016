@@ -3,20 +3,66 @@
 %  Date created: Thu 03 Apr 2014 12:56:02 BST
 %  <+Last Edited: Thu 03 Apr 2014 12:57:14 BST by hl13g10 on octopus +>
 
-\section{Processor}
+%\section{Processor}
 
-The whole processor is pulled together in two encapsulating modules. 
-The datapath module links the registers and ALU and implements the data multiplexors, program counter and accumulator.
-The top level CPU module links the program ROM, controller and datapath. 
+%The whole processor is pulled together in two encapsulating modules. 
+%The datapath module links the registers and ALU and implements the data multiplexors, program counter and accumulator.
+%The top level CPU module links the program ROM, controller and datapath. 
 
-\subsection{Datapath}
+\section{Datapath}
+\subsection{Testbench}
 \todo[inline]{Explain testbench}
-\todo[inline]{Simulation Results}
+The testbench conducts the following tests:
+\begin{enumerate}
+\item Program counter increment and write enable
+\item Immidate loading into accumulator
+\item Addition with an immediate
+\item Write back to register
+\item Read from register
+\item Store switches to registers
+\item Read switches from register
+\item Program counter jump to accumulator value
+\end{enumerate}
+
+These operations are verified by viewing the LED output (the accumulator) and the program counter.
+Assertions are used to check the outputs and keep an error count. 
+This testbench is to check the internal connections of the datapath, and also the implementation of the extra registers.
+Figure \ref{fig:datapathsim} shows the waveform of the simulation. 
+The error count remains zero through out showing no errors exist in the datapath.
+%\subsection{Simulation}
+%\todo[inline]{Simulation Results}
+
+\begin{figure}
+\includegraphics[height=\textheight]{Figures/datapathsim.eps}
+\caption{Datapath simulation waveform}
+\label{fig:datapathsim}
+\end{figure}
+
+\subsection{Synthesis}
 \todo[inline]{Synthesis}
 
-\subsection{CPU}
+\section{CPU}
+\subsection{Testbench}
 \todo[inline]{Describe testbench}
+
+The testbench has two main parts; a task to commence the handshaking protocols, and a function to calculated the expected result. 
+The handshaking task also contains assertions to verify the output. 
+The function contains the constants and calculates the transform, with correct rounding.
+This can be seen in listing \ref{lstcpufunction}. 
+
+
+
+
+
+\subsection{Simulation Results}
 \todo[inline]{Full System Test}
+\begin{figure}
+\includegraphics[height=\textheight]{Figures/cpusim.eps}
+\caption{CPU simulation waveform}
+\label{fig:cpusim}
+\end{figure}
+
+\subsection{Synthesis}
 \todo[inline]{Full system synthesis}
 
 
