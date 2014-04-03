@@ -1,11 +1,21 @@
 %  Registers.tex
 %  Document created by seblovett on seblovett-Ubuntu
 %  Date created: Tue 01 Apr 2014 20:10:32 BST
-%  <+Last Edited: Wed 02 Apr 2014 17:37:40 BST by hl13g10 on octopus +>
+%  <+Last Edited: Thu 03 Apr 2014 12:21:48 BST by hl13g10 on octopus +>
 
 \section{Registers}\label{sect:regs}
 
 \todo[inline]{Design}
+The allocation in the instruction set allows for up to 16 general purpose registers. 
+In the program, discussed in section \ref{sect:prog}, only 11 registers are used. 
+Six are used to store the constants, two for the initial vector, two for the result and a temporary register.
+To save RAM, only the required registers are implemented.
+This still requires a four bit address and attempting to address the registers above the valid range would result in undefined behaviour.
+
+The registers were implemented using the Synchronous RAM.
+This, at the expense of performance, utilised the on chip SRAM blocks. 
+The design was parametrised to allow the data and address width and number of registers to be easily changed. 
+
 \todo[inline]{Explain Test Bench}
 \todo[inline]{Simulation Results}
 \todo[inline]{Synthesis}
