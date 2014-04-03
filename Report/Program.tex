@@ -5,7 +5,7 @@
 
 \section{Program}\label{sect:prog}
 
-\todo[inline]{The program counter, how and why it works}
+%\todo[inline]{The program counter, how and why it works}
 \subsection{Program Counter}
 The program counter is a register storing the address of the current instruction.
 It is used to access the program memory to retrieve instructions. 
@@ -21,7 +21,7 @@ It is also sequential memory, meaning it takes a clock edge to output the data a
 This is advantageous as the Cyclone IV has a large amount of synchronous RAM, which is far more efficient that using logic elements.
 However, this then requires a multicycle control unit. 
 
-\todo[inline]{Program itself}
+%\todo[inline]{Program itself}
 \subsection{Program}
 
 The program is in two sections, the set up and the loop. 
@@ -36,7 +36,6 @@ This means that the values must be 128 times bigger than the decimal equivalent.
 Listing \ref{lstsetup} shows the code to load all the constants to memory.
 
 \lstinputlisting[lastline=18,caption={Loading initial constants},frame=single,label=lstsetup]{../Implementation/transform.asm}
-
 
 
 \subsubsection{Loop}
@@ -92,7 +91,7 @@ This code is seen in listing \ref{lsthandshake2}.
 \lstinputlisting[firstline=41, lastline=46,caption={End of loop code to display results and return to the beginning of the loop},frame=single,label=lsthandshake2]{../Implementation/transform.asm}
 
 
-\todo[inline]{Talk about assembler too?}
+%\todo[inline]{Talk about assembler too?}
 \todo[inline]{Jump locations in asm? Be good to implement. Filling all of memory too? If I'm doing this, .defines also...}
 A basic assembler is implemented to aid development.
 It is capable of reading the SystemVerilog package containing the definition of the opcodes.
