@@ -1,7 +1,7 @@
 // cpu_stim.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:23:59 GMT
-// <+Last Edited: Thu 03 Apr 2014 15:32:21 BST by hl13g10 on hind.ecs.soton.ac.uk +>
+// <+Last Edited: Fri 04 Apr 2014 10:17:26 BST by hl13g10 on octopus +>
 
 
 module cpu_stim ();
@@ -35,7 +35,7 @@ begin
         #100 nReset = 0;
         #1000 nReset = 1;
 end
-
+//begin listing
 task CheckTransform;// (logic[7:0] x, y);
 	input logic [7:0] x1,y1,x2,y2;
 	$display("x1 = %d\ny1 = %d", x1,y1);
@@ -79,7 +79,7 @@ function logic [15:0] CalculateTransform(logic signed [7:0] x1, y1);
 	y2c = temp3[14:7] + temp4[14:7] + b2;
 	return {x2c, y2c};
 endfunction
-
+//end listing
 initial
 begin
 //	a11 = 8'h40;
