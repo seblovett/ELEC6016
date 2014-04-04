@@ -1,7 +1,7 @@
 %  ALU.tex
 %  Document created by seblovett on seblovett-Ubuntu
 %  Date created: Tue 01 Apr 2014 20:10:56 BST
-%  <+Last Edited: Fri 04 Apr 2014 16:38:30 BST by hl13g10 on octopus +>
+%  <+Last Edited: Fri 04 Apr 2014 16:57:06 BST by hl13g10 on octopus +>
 
 
 \section{ALU}
@@ -13,7 +13,7 @@ The ALU in this processor has three operations on two operands.
 No flags, such as carry or zero, are implemented either as no conditional branches are needed.
 
 The ALU supports the operations in table \ref{tab:aluops}.
-The operation encodings are discussed in section \ref{sect:controller}.
+The operation encoding is discussed in section \ref{sect:controller}.
 Due to the use of fixed point notation, the integer result of the multiplication is located at bits [14:7] of the 16 bit result.
 To correctly synthesise combinational logic, all inputs must have a defined output.
 The ALU was smallest in size when the A function was repeated in the redundant state.
@@ -60,8 +60,8 @@ The fourth, undefined operation is not tested as the result does not matter.
 %\todo[inline]{Synthesis}
 \subsection{Synthesis}
 
-Synthesis of the ALU largely consists of multiplexors. 
-As three operations are implemented, this requires 8 3:1 multiplexors. 
+Synthesis of the ALU largely consists of multiplexers. 
+As three operations are implemented, this requires 8 3:1 multiplexers. 
 There is also an adder and a multiplier. 
 The multiplier implemented utilised the embedded multipliers available on the device.
 

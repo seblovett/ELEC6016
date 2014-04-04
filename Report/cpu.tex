@@ -15,7 +15,7 @@
 The testbench verifies the following: %conducts the following tests:
 \begin{enumerate}
 \item Program counter increment and write enable
-\item Immidate loading into accumulator
+\item Immediate loading into accumulator
 \item Addition with an immediate
 \item Write back to register
 \item Read from register
@@ -43,7 +43,7 @@ The error count remains zero through out showing no errors exist in the datapath
 
 The synthesis of the datapath creates an instance of the register and ALU. 
 It also implements the accumulator and program counter. 
-A large number of multiplexors are used to direct the dataflow.% and all are 8 bit, 2:1 multiplexors. 
+A large number of multiplexers are used to direct the data flow.% and all are 8 bit, 2:1 multiplexors. 
 These take up a significant amount of the datapath. 
 The whole synthesis is shown in figure \ref{fig:datapathsynth}.
 
@@ -81,7 +81,7 @@ Registers 6 and 7 are used to store the initial $x_1$ and $y_1$ vector.
 Registers 9 and 10 are used to store the result and register 8 is used as a temporary register. 
 The global error counter is shown, indicating that the whole system passes the test. 
 Each iteration consists of a function call to calculate the expected outcome, and a task call to input the data. 
-This process is then looped to test different datasets. 
+This process is then looped to test different data sets. 
 
 \todo[inline]{Make a table of given inputs and expected outputs (real and rounded?)}
 

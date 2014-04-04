@@ -15,8 +15,8 @@ It implements ten instructions in total to calculate the affine transform of 8 b
 The total cost of the processor is 72.
 A full breakdown of the costs is seen in table \ref{tab:costs}.
 A large amount of the cost is located in the datapath. 
-This is due to the multiplexors needed to direct the data around. 
-A more compact design could be achieved by aiming to minimize these elements. 
+This is due to the multiplexers needed to direct the data around. 
+A more compact design could be achieved by aiming to minimise these elements. 
 The two registers in the datapath also contribute a fair amount to the cost. 
 These are a compromise and by using a register-register architecture, the decoding logic is increased and a larger instruction is needed.
 Overall, the design is a success, passing thorough testing and achieves the initial goals. 

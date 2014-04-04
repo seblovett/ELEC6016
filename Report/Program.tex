@@ -10,7 +10,7 @@
 The program counter is a register storing the address of the current instruction.
 It is used to access the program memory to retrieve instructions. 
 The implementation involves a six bit write enable register with a multiplexed input. 
-The inputs to the multiplexor are the output of the ALU and an incremented value of itself.
+The inputs to the multiplexer are the output of the ALU and an incremented value of itself.
 The increment is used to progress the program in normal operation, where as the ALU output is used to jump to any location by use of the \texttt{JMPA} instruction.
 Only six bits are used as the program implemented is 46 instructions long. 
 
@@ -19,7 +19,7 @@ The program memory is implemented as sequential read only memory (ROM).
 %This means there is no ability to write to the memory.
 It takes a clock cycle to output the data at the given address. 
 This is advantageous as the Cyclone IV has a large amount of synchronous RAM, which is far more efficient that using logic elements.
-However, this then requires a multicycle control module. 
+However, this then requires a multi-cycle control module. 
 
 %\todo[inline]{Program itself}
 \subsection{Program}

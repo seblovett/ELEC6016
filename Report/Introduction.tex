@@ -9,7 +9,7 @@
 
 This assignment is to design and test a processor capable of executing an affine transform of a vector. 
 The processor should be optimised in terms of size, with no performance requirements. 
-The cost function, seen in equation~\eqref{eq:cost}, should be minimized. 
+The cost function, seen in equation~\eqref{eq:cost}, should be minimised. 
 The data is given in bytes and must be read from the switches and the result should be displayed on the LEDs. 
 A handshaking protocol is also defined and must be followed. 
 A processor is defined as having a distinct control, datapath and memory with an instruction set that is executed. 
@@ -19,7 +19,7 @@ A processor is defined as having a distinct control, datapath and memory with an
 \end{equation}
 
 A number of designs and approaches were investigated, including register-register and single cycle designs.
-The final design is a register-accumulator, mutli-cycle processor which utilises embedded multipliers and SRAM available on the FPGA. 
+The final design is a register-accumulator, multi-cycle processor which utilises embedded multipliers and SRAM available on the FPGA. 
 It is able to conduct the affine transform using data set 2 (see equation \ref{eq:affinedata2}) and satisfies the handshaking protocols. 
 
 \begin{equation}\label{eq:affinedata2}

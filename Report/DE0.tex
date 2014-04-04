@@ -23,12 +23,12 @@ This is accomplished by the code seen in listing \ref{lstleds}.
 
 \lstinputlisting[style=sverilog, firstline=30, lastline=39,caption={Extra LED logic to show when the processor is executing a \texttt{WAIT} instruction.},frame=single,label=lstleds]{../Implementation/cpu.sv}
 
-\subsection{Issues encounterd}
+\subsection{Issues encountered}
 
 %Program Memory not allowing to be small. 
-The ROM was found to be difficult to minimize in size. 
+The ROM was found to be difficult to minimise in size. 
 A threshold was found at 512 bits where, if any lower, the module was synthesised into logic elements. 
-This could be due to the cost figure for the Altera Synthesis tool to minimize is very different to the cost figure minimized here. 
+This could be due to the cost figure for the Altera Synthesis tool to minimise is very different to the cost figure minimised here. 
 The use of logic elements would keep the same functionality, but utilises the look up tables in a logic cell. 
 The overall cost was still lower using the SRAM, even though a large proportion of the memory is inaccessible and remains unused.
 
