@@ -1,7 +1,7 @@
 %  Program.tex
 %  Document created by seblovett on seblovett-Ubuntu
 %  Date created: Tue 01 Apr 2014 20:09:49 BST
-%  <+Last Edited: Fri 04 Apr 2014 10:11:05 BST by hl13g10 on octopus +>
+%  <+Last Edited: Fri 04 Apr 2014 11:30:14 BST by hl13g10 on octopus +>
 
 \section{Program}\label{sect:prog}
 
@@ -35,7 +35,7 @@ The coefficients of the A matrix are represented by fixed point notation.
 This means that the values must be 128 times bigger than the decimal equivalent.
 Listing \ref{lstsetup} shows the code to load all the constants to memory.
 
-\lstinputlisting[lastline=18,caption={Loading initial constants},frame=single,label=lstsetup]{../Implementation/transform.asm}
+\lstinputlisting[style=asm,lastline=18,caption={Loading initial constants}label=lstsetup]{../Implementation/transform.asm}
 
 
 \subsubsection{Loop}
@@ -44,7 +44,7 @@ An initial handshake is done to load the values of $x_1$ and $y_1$ into memory.
 This is achieved by using the \texttt{WAIT} instructions to control the program flow, and the \texttt{STSW} to write the switches to a memory location. 
 The whole process is seen in listing \ref{lsthandshake1}.
 
-\lstinputlisting[firstline=19, lastline=24,caption={Handshaking protocol for switch reading},frame=single,label=lsthandshake1]{../Implementation/transform.asm}
+\lstinputlisting[style=asm,firstline=19, lastline=24,caption={Handshaking protocol for switch reading},label=lsthandshake1]{../Implementation/transform.asm}
 
 
 The affine transform is shown in equation \eqref{eq:affine}.
@@ -81,14 +81,14 @@ y_2 = a_{21} \times x_1 + a_{22} \times y_1 + b_2
 \end{equation}
 
 
-\lstinputlisting[firstline=25, lastline=35,caption={Affine transform for x2},frame=single,label=lstaffinex]{../Implementation/transform.asm}
+\lstinputlisting[firstline=25, lastline=35,caption={Affine transform for x2},label=lstaffinex,style=asm]{../Implementation/transform.asm}
 
 
 Once the transform is complete, a second handshake is done to read back the result. 
 The program then jumps to the start of the loop, ready for the next calculation. 
 This code is seen in listing \ref{lsthandshake2}.
 
-\lstinputlisting[firstline=41, lastline=46,caption={End of loop code to display results and return to the beginning of the loop},frame=single,label=lsthandshake2]{../Implementation/transform.asm}
+\lstinputlisting[firstline=41, lastline=46,caption={End of loop code to display results and return to the beginning of the loop},style=asm,label=lsthandshake2]{../Implementation/transform.asm}
 
 
 %\todo[inline]{Talk about assembler too?}
