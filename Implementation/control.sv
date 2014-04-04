@@ -58,10 +58,8 @@ always_comb
 begin
 //	PcSel = PcInc;
 	PcWe = 0;
-	
 	if (state == Execute)
 	begin
-		PcWe = 1;
 		case(OpCode)
 		WAIT0 :	begin
 				if(~Sw8) PcWe = 0;
@@ -72,8 +70,8 @@ begin
 		JMPA  : begin
 //				PcSel  = PcJmp;
 			end
-	//	default:
-//				PcSel = PcInc;
+		default:
+				PcWe = 1;
 		endcase
 	end //if
 end
