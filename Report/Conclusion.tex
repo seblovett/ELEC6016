@@ -1,14 +1,40 @@
 %  Conclusion.tex
 %  Document created by seblovett on seblovett-Ubuntu
 %  Date created: Tue 01 Apr 2014 20:11:41 BST
-%  <+Last Edited: Wed 02 Apr 2014 17:39:11 BST by hl13g10 on octopus +>
+%  <+Last Edited: Fri 04 Apr 2014 13:58:12 BST by hl13g10 on octopus +>
 
 
 \section{Conclusion}
 
-\todo[inline]{Which objectives in intro have been done. }
-\todo[inline]{Cost figure}
-\todo[inline]{General conclusion }
-\todo[inline]{What I've learnt}
-\todo[inline]{Future work and improvements}
+%\todo[inline]{Which objectives in intro have been done. }
+The final processor satisfies the specification and the objectives highlights in section \ref{sect:intro}.
+The processor is a register-accumulator based, MIPS-esk architecture. 
+It implements ten instructions in total to calculate the affine transform of 8 bit data.
+
+%\todo[inline]{Cost figure}
+The total cost of the processor is 72.
+A full breakdown of the costs is seen in table \ref{tab:costs}.
+A large amount of the cost is located in the datapath. 
+This is due to the multiplexors needed to direct the data around. 
+A more compact design could be achieved by aiming to minimize these elements. 
+The two registers in the datapath also contribute a fair amount to the cost. 
+These are a compromise and by using a register-register architecture, the decoding logic is increased and a larger instruction is needed.
+Overall, the design is a success, passing thorough testing and achieves the initial goals. 
+
+
+\begin{table}
+\caption{Break down of the costs by module. Costs do not include any instances made by the module.}
+\label{tab:costs}
+\begin{tabular}{cccc} \hline
+Module		& Logic Elements	& Memory (bits)	& Embedded Multipliers \\ \hline
+Control		& 9			& 0		& 0	\\
+Datapath	& 24			& 0		& 0	\\
+Registers	& 0			& 88		& 0	\\
+ALU		& 21			& 0		& 1	\\
+ROM		& 0			& 512		& 0 	\\ \hline
+Total 		& 54			& 600		& 1 	\\ \hline
+\end{tabular}
+\end{table}
+
+%\todo[inline]{General conclusion }
 
