@@ -1,7 +1,7 @@
 // control.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:21:44 GMT
-// <+Last Edited: Fri 04 Apr 2014 14:43:36 BST by hl13g10 on octopus +>
+// <+Last Edited: Fri 04 Apr 2014 15:16:10 BST by hl13g10 on octopus +>
 
 
 module control (
@@ -39,7 +39,7 @@ assign Op = OpCode;
 //The below lines are a listing in the report, do not move
 assign AluOp = alu_functions_t'({Op[1], Op[0]});
 assign WDataSel = ~(Op[0] | Op[1]);
-assign Op1Sel = ((Op[2]) ^ (Op[3]));
+assign Op1Sel = (Op[2]) ^ (Op[3]);
 assign ImmSel = ~(Op[0] | Op[1]);
 assign PcSel = (OpCode == JMPA) ? PcJmp : PcInc;
 always_comb 
