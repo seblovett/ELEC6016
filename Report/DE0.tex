@@ -1,7 +1,7 @@
 %  DE0.tex
 %  Document created by seblovett on seblovett-Ubuntu
 %  Date created: Tue 01 Apr 2014 20:11:21 BST
-%  <+Last Edited: Fri 04 Apr 2014 11:32:14 BST by hl13g10 on octopus +>
+%  <+Last Edited: Fri 04 Apr 2014 12:52:03 BST by hl13g10 on octopus +>
 
 \section{DE0 Implementation}
 
@@ -29,8 +29,17 @@ The logic added by here is not included in the overall cost function and is adde
 Program Memory not allowing to be small. 
 
 
+\subsection{Synthesis}
+%\todo[inline]{Synthesised logic. Put some sexy figures in here}
 
-\todo[inline]{Synthesised logic. Put some sexy figures in here}
+The extra logic created by the demo definition is shown in figure~\ref{fig:cpudemosynth}.
+It consists of two equality checks between the opcode and a constant (the \texttt{WAITn} opcodes).
 
 
+
+\begin{figure}
+\includegraphics[width=\textwidth]{Figures/cpudemosynth.png}
+\caption{Synthesised top level module showing the logic added for the demonstration}
+\label{fig:cpudemosynth}
+\end{figure}
 

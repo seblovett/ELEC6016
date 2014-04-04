@@ -1,7 +1,7 @@
 %  Registers.tex
 %  Document created by seblovett on seblovett-Ubuntu
 %  Date created: Tue 01 Apr 2014 20:10:32 BST
-%  <+Last Edited: Fri 04 Apr 2014 11:24:47 BST by hl13g10 on octopus +>
+%  <+Last Edited: Fri 04 Apr 2014 12:29:48 BST by hl13g10 on octopus +>
 
 \section{Registers}\label{sect:regs}
 
@@ -45,4 +45,14 @@ The error count is zero at the end of the simulation showing that the module is 
 \end{figure}
 
 \subsection{Synthesis}
-\todo[inline]{Synthesis}
+%\todo[inline]{Synthesis}
+
+The synthesised logic of the register module is shown in \ref{fig:registersynth}.
+This is virtually identical to the Program ROM module, seen in figure \ref{fig:ramsynth} apart from the write address and data are inputs, rather than hardwired constants.
+This utilises the internal SRAM of the FPGA. 
+
+\begin{figure}
+\includegraphics[width=\textwidth]{Figures/registersynth.png}
+\caption{Synthesis of the register module}
+\label{fig:registersynth}
+\end{figure}
