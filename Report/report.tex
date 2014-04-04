@@ -1,7 +1,7 @@
 %  report.tex
 %  Document created by seblovett on seblovett-Ubuntu
 %  Date created: Tue 01 Apr 2014 19:44:08 BST
-%  <+Last Edited: Fri 04 Apr 2014 15:04:54 BST by hl13g10 on octopus +>
+%  <+Last Edited: Fri 04 Apr 2014 16:28:58 BST by hl13g10 on octopus +>
 
 \documentclass[12pt]{article}
 
@@ -16,12 +16,19 @@
 
 \title{ELEC6016 - FPGA Synthesis of a picoMIPS}
 
+%TC:macro \todo 1
 \begin{document}
 \maketitle
 \listoftodos
 \begin{abstract}
 \todo[inline]{Abstract: Summarise your work in less than 100 words stating briefly what was achieved.}
+This report documents the design and test of a picoMIPS processor.
+The processor is able to calculate an affine transform with predefined constants. 
+A small instruction set of ten instructions was implemented with an eight bit opcode format. 
+The processor is a register-accumulator based architecture. 
 \end{abstract}
+%TC:ignore
+
 
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
@@ -68,6 +75,8 @@
 %\todo[inline]{Neaten all synthesis figures}
 \todo[inline]{Standardise all tables}
 \todo[inline]{Spell Check}
+
+%TC:endignore
 %For each:
 % Design of
 % Test
