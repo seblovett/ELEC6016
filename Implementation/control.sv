@@ -1,7 +1,7 @@
 // control.sv
 // Writen by seblovett
 // Date Created Tue 18 Feb 2014 23:21:44 GMT
-// <+Last Edited: Wed 02 Apr 2014 17:27:24 BST by hl13g10 on octopus +>
+// <+Last Edited: Fri 04 Apr 2014 14:43:36 BST by hl13g10 on octopus +>
 
 
 module control (
@@ -62,14 +62,16 @@ begin
 	begin
 		case(OpCode)
 		WAIT0 :	begin
-				if(~Sw8) PcWe = 0;
+				//if(~Sw8) PcWe = 0;
+				PcWe = Sw8;
 			end
 		WAIT1 :	begin
-				if(Sw8) PcWe = 0;
+				//if(Sw8) PcWe = 0;
+				PcWe = ~Sw8;
 			end
-		JMPA  : begin
+//		JMPA  : begin
 //				PcSel  = PcJmp;
-			end
+//			end
 		default:
 				PcWe = 1;
 		endcase
