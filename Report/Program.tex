@@ -1,7 +1,7 @@
 %  Program.tex
 %  Document created by seblovett on seblovett-Ubuntu
 %  Date created: Tue 01 Apr 2014 20:09:49 BST
-%  <+Last Edited: Fri 04 Apr 2014 13:35:51 BST by hl13g10 on octopus +>
+%  <+Last Edited: Fri 04 Apr 2014 15:23:12 BST by hl13g10 on octopus +>
 
 \section{Program}\label{sect:prog}
 
@@ -11,15 +11,15 @@ The program counter is a register storing the address of the current instruction
 It is used to access the program memory to retrieve instructions. 
 The implementation involves a six bit write enable register with a multiplexed input. 
 The inputs to the multiplexor are the output of the ALU and an incremented value of itself.
-The increment is used to progress the program in normal operation, where as the ALU output is used to jump to any location.
+The increment is used to progress the program in normal operation, where as the ALU output is used to jump to any location by use of the \texttt{JMPA} instruction.
 Only six bits are used as the program implemented is 46 instructions long. 
 
 \subsection{Program Memory}
-The program memory is implemented as read only memory (ROM). 
-This means there is no ability to write to the memory.
-It is also sequential memory, meaning it takes a clock edge to output the data at the given address. 
+The program memory is implemented as sequential read only memory (ROM). 
+%This means there is no ability to write to the memory.
+It takes a clock cycle to output the data at the given address. 
 This is advantageous as the Cyclone IV has a large amount of synchronous RAM, which is far more efficient that using logic elements.
-However, this then requires a multicycle control unit. 
+However, this then requires a multicycle control module. 
 
 %\todo[inline]{Program itself}
 \subsection{Program}
@@ -31,7 +31,7 @@ The loop then conducts the handshaking and the affine transform.
 \subsubsection{Set Up}
 
 The initial part of the program loads in the matrix coefficients into the registers. 
-The coefficients of the A matrix are represented by fixed point notation. 
+The coefficients of the \textbf{A} matrix are represented by fixed point notation. 
 This means that the values must be 128 times bigger than the decimal equivalent.
 Listing \ref{lstsetupcode} shows the code to load all the constants to memory.
 
@@ -41,7 +41,7 @@ Listing \ref{lstsetupcode} shows the code to load all the constants to memory.
 \subsubsection{Loop}
 
 An initial handshake is done to load the values of $x_1$ and $y_1$ into memory. 
-This is achieved by using the \texttt{WAIT} instructions to control the program flow, and the \texttt{STSW} to write the switches to a memory location. 
+This is achieved by using the \texttt{WAIT}\textit{n} instructions to control the program flow, and the \texttt{STSW} to write the switches to a memory location. 
 The whole process is seen in listing \ref{lsthandshake1}.
 
 \lstinputlisting[style=asm,firstline=19, lastline=24,caption={Handshaking protocol for switch reading},label=lsthandshake1]{../Implementation/transform.asm}
@@ -81,7 +81,7 @@ y_2 = a_{21} \times x_1 + a_{22} \times y_1 + b_2
 \end{equation}
 
 
-\lstinputlisting[firstline=25, lastline=35,caption={Affine transform for x2},label=lstaffinex,style=asm]{../Implementation/transform.asm}
+\lstinputlisting[firstline=25, lastline=35,caption={Affine transform for calculating $x_2$},label=lstaffinex,style=asm]{../Implementation/transform.asm}
 
 
 Once the transform is complete, a second handshake is done to read back the result. 
@@ -92,7 +92,7 @@ This code is seen in listing \ref{lsthandshake2}.
 
 
 %\todo[inline]{Talk about assembler too?}
-\todo[inline]{Jump locations in asm? Be good to implement. Filling all of memory too? If I'm doing this, .defines also...}
+%\todo[inline]{Jump locations in asm? Be good to implement. Filling all of memory too? If I'm doing this, .defines also... I said it's a simple. Brownie points for doing one full stop, but no need to make my life difficult.}
 A basic assembler is implemented to aid development.
 It is capable of reading the SystemVerilog package containing the definition of the opcodes.
 It then assembles the program into the hex values. 

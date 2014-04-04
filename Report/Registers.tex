@@ -1,13 +1,13 @@
 %  Registers.tex
 %  Document created by seblovett on seblovett-Ubuntu
 %  Date created: Tue 01 Apr 2014 20:10:32 BST
-%  <+Last Edited: Fri 04 Apr 2014 12:29:48 BST by hl13g10 on octopus +>
+%  <+Last Edited: Fri 04 Apr 2014 15:26:11 BST by hl13g10 on octopus +>
 
 \section{Registers}\label{sect:regs}
 
 %\todo[inline]{Design}
-The allocation in the instruction set allows for up to 16 general purpose registers. 
-In the program, discussed in section \ref{sect:prog}, only 11 registers are used. 
+The allocation in the instruction set allows for up to sixteen general purpose registers. 
+In the program, discussed in section \ref{sect:prog}, only eleven registers are used. 
 Six are used to store the constants, two for the initial vector, two for the result and a temporary register.
 To save RAM, only the required registers are implemented.
 This still requires a four bit address and attempting to address the registers above the valid range would result in undefined behaviour.
@@ -31,7 +31,8 @@ If an assertion fails, a global error counter is incremented.
 This task is then done a large amount of times to check all registers. 
 Figure \ref{fig:regsim} shows the output waveform of the simulation. 
 The error count is zero at the end of the simulation showing that the module is functioning correctly.
-
+The test is done with a complete set of registers. 
+This is so the behaviour can be verified as address redundancy cannot be predicted.
 
 
 

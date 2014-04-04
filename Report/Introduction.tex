@@ -1,7 +1,7 @@
 %  Introduction.tex
 %  Document created by seblovett on seblovett-Ubuntu
 %  Date created: Tue 01 Apr 2014 19:50:43 BST
-%  <+Last Edited: Fri 04 Apr 2014 13:57:57 BST by hl13g10 on octopus +>
+%  <+Last Edited: Fri 04 Apr 2014 15:07:23 BST by hl13g10 on octopus +>
 
 \section{Introduction}\label{sect:intro}
 %\todo[inline]{Introduction to do}
@@ -9,7 +9,7 @@
 
 This assignment is to design and test a processor capable of executing an affine transform of a vector. 
 The processor should be optimised in terms of size, with no performance requirements. 
-The cost function, seen in equation~\eqref{eq:cost}, must be minimized. 
+The cost function, seen in equation~\eqref{eq:cost}, should be minimized. 
 The data is given in bytes and must be read from the switches and the result should be displayed on the LEDs. 
 A handshaking protocol is also defined and must be followed. 
 A processor is defined as having a distinct control, datapath and memory with an instruction set that is executed. 
@@ -43,6 +43,14 @@ y_1
 \end{bmatrix}
 \end{equation}
 
+
+Figure \ref{fig:arch} shows the architecture of the processor, excluding the control and control signals.
+
+\begin{figure}
+\includegraphics[width=\textwidth]{Figures/architecture.eps}
+\caption{Block Diagram of the architecture. Control unit and signals have been omitted for clarity.}
+\label{fig:arch}
+\end{figure}
 
 Each module of the processor is documented in this report, with discussion on the design, test and synthesis of the code. 
 Additional extras are also discussed, including a simple assembler (see section \ref{sect:prog} and extra logic added for debugging and the demonstration (see section \ref{sect:de0}.

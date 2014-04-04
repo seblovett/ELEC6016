@@ -1,7 +1,7 @@
 %  cpu.tex
 %  Document created by seblovett on octopus
 %  Date created: Thu 03 Apr 2014 12:56:02 BST
-%  <+Last Edited: Fri 04 Apr 2014 12:52:51 BST by hl13g10 on octopus +>
+%  <+Last Edited: Fri 04 Apr 2014 15:29:38 BST by hl13g10 on octopus +>
 
 %\section{Processor}
 
@@ -12,7 +12,7 @@
 \section{Datapath}\label{sect:datapath}
 \subsection{Testbench}
 %\todo[inline]{Explain testbench}
-The testbench conducts the following tests:
+The testbench verifies the following: %conducts the following tests:
 \begin{enumerate}
 \item Program counter increment and write enable
 \item Immidate loading into accumulator
@@ -43,8 +43,8 @@ The error count remains zero through out showing no errors exist in the datapath
 
 The synthesis of the datapath creates an instance of the register and ALU. 
 It also implements the accumulator and program counter. 
-A large number of multiplexors are used to direct the dataflow and all are 8 bit, 2:1 multiplexors. 
-These take up a large amount of the datapath. 
+A large number of multiplexors are used to direct the dataflow.% and all are 8 bit, 2:1 multiplexors. 
+These take up a significant amount of the datapath. 
 The whole synthesis is shown in figure \ref{fig:datapathsynth}.
 
 
@@ -59,11 +59,11 @@ The whole synthesis is shown in figure \ref{fig:datapathsynth}.
 \subsection{Testbench}
 %\todo[inline]{Describe testbench}
 
-The testbench has two main parts; a task to commence the handshaking protocols, and a function to calculated the expected result. 
+The testbench has two main parts; a task to commence the handshaking protocols, and a function to calculate the expected result. 
 The handshaking task also contains assertions to verify the output. 
 The function contains the constants and calculates the transform, with correct rounding.
 The task can be seen in listing \ref{lstcputask} and the function is shown in listing \ref{lstcpufunction}.
-These are used by a loop to test a random set of inputs. 
+These are used in a loop to test random sets of inputs. 
 A few basic tests are also done with simple data. 
 
 \lstinputlisting[firstline=31,style=sverilog,lastline=63,caption={Verification task to conduct the handshaking protocols. Assertions are used in this task to verify the output.},label=lstcputask]{../Implementation/cpu_stim.sv}
@@ -79,9 +79,11 @@ Figure \ref{fig:cpusim} shows the output waveform of the test.
 Registers 0-5 contain the constants used. 
 Registers 6 and 7 are used to store the initial $x_1$ and $y_1$ vector. 
 Registers 9 and 10 are used to store the result and register 8 is used as a temporary register. 
-The global error counter is shown at the top of the waveform, indicating that the whole system passes the test. 
+The global error counter is shown, indicating that the whole system passes the test. 
 Each iteration consists of a function call to calculate the expected outcome, and a task call to input the data. 
 This process is then looped to test different datasets. 
+
+\todo[inline]{Make a table of given inputs and expected outputs (real and rounded?)}
 
 \begin{figure}
 \includegraphics[height=\textheight]{Figures/cpusim.eps}

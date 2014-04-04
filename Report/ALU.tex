@@ -1,21 +1,21 @@
 %  ALU.tex
 %  Document created by seblovett on seblovett-Ubuntu
 %  Date created: Tue 01 Apr 2014 20:10:56 BST
-%  <+Last Edited: Fri 04 Apr 2014 12:37:03 BST by hl13g10 on octopus +>
+%  <+Last Edited: Fri 04 Apr 2014 15:27:38 BST by hl13g10 on octopus +>
 
 
 \section{ALU}
 
 \subsection{Design}
 The arithmetic logic unit (ALU) is a key part of a processor. 
-It is a combinational block of memory, responsible for the arithmetic and logic operations on the data.
+It is a combinational block, responsible for the arithmetic and logic operations on the data.
 The ALU in this processor has three operations on two operands.
 No flags, such as carry or zero, are implemented either as no conditional branches are needed.
 
 The ALU supports the operations in table \ref{tab:aluops}.
 The operation encodings are discussed in section \ref{sect:controller}.
 Due to the use of fixed point notation, the integer result of the multiplication is located at bits [14:7] of the 16 bit result.
-To correctly synthesised combinational logic, all inputs must have a defined output.
+To correctly synthesise combinational logic, all inputs must have a defined output.
 The ALU was smallest in size when the A function was repeated in the redundant state.
 
 \begin{table}
@@ -34,7 +34,7 @@ The Cyclone IV FPGA has a number of embedded multipliers.
 One of these is utilised within the ALU to conduct signed multiplication. 
 This is done by defining the inputs as signed, and using a combinational assign statement.
 The Quartus tool then recognises this and synthesises the design using the embedded multipliers.
-The multiplier cell also includes 3 registers which are not utilised in this design.
+%The multiplier cell also includes 3 registers which are not utilised in this design.
 
 
 %\todo[inline]{Operations implemented}
@@ -62,7 +62,7 @@ The fourth, undefined operation is not tested as the result does not matter.
 
 Synthesis of the ALU largely consists of multiplexors. 
 As three operations are implemented, this requires 8 3:1 multiplexors. 
-There is also adder and multiplier. 
+There is also an adder and a multiplier. 
 The multiplier implemented utilised the embedded multipliers available on the device.
 
 \begin{figure}
