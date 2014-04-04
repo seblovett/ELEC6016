@@ -1,7 +1,7 @@
 %  Controller.tex
 %  Document created by seblovett on seblovett-Ubuntu
 %  Date created: Tue 01 Apr 2014 20:09:16 BST
-%  <+Last Edited: Fri 04 Apr 2014 11:48:23 BST by hl13g10 on octopus +>
+%  <+Last Edited: Fri 04 Apr 2014 12:17:11 BST by hl13g10 on octopus +>
 
 
 \section{Controller}\label{sect:controller}
@@ -130,4 +130,21 @@ The error counter is at zero at the end of the simulation, showing that this tes
 
 \subsection{Synthesis}
 
-\todo[inline]{Synthesis}
+%\todo[inline]{Synthesis}
+
+The synthesis of the controller is seen in figure \ref{fig:control:synth}.
+The largest part of the controller is the state machine. 
+All of the discussed simplifications to the decoding can be seen in this diagram.
+Interestingly, the dependence of the write enable signals is realised by a multiplexor.
+A simpler solution could be an \texttt{AND} gate. 
+If the state is encoded using one hot coding, then no extra logic would be required to use an \texttt{AND} gate.
+However, the synthesis tool probably takes into account the layout of the device and utilises the logic blocks as much as possible.
+
+
+\begin{figure}
+\includegraphics[width=\textwidth]{Figures/controlsynth.png}
+\caption{Synthesis of the controller}
+\label{fig:control:synth}
+\end{figure}
+
+
