@@ -1,14 +1,14 @@
 %  Conclusion.tex
 %  Document created by seblovett on seblovett-Ubuntu
 %  Date created: Tue 01 Apr 2014 20:11:41 BST
-%  <+Last Edited: Fri 04 Apr 2014 15:32:18 BST by hl13g10 on octopus +>
+%  <+Last Edited: Fri 04 Apr 2014 16:40:45 BST by hl13g10 on octopus +>
 
 
 \section{Conclusion}
 
 %\todo[inline]{Which objectives in intro have been done. }
 The final processor satisfies the specification and the objectives highlighted in section \ref{sect:intro}.
-The processor is a register-accumulator based, MIPS-esk\todo{is this an appropriate term?!} architecture. 
+The processor is a register-accumulator based, MIPS-esk \todo{is this an appropriate term?!} architecture. 
 It implements ten instructions in total to calculate the affine transform of 8 bit data.
 
 %\todo[inline]{Cost figure}
@@ -25,14 +25,14 @@ Overall, the design is a success, passing thorough testing and achieves the init
 \begin{table}
 \caption{Break down of the costs by module. Costs do not include any instances made by the module. Clock reduction and debugging logic is not included in this cost.}
 \label{tab:costs}
-\begin{tabular}{cccc} \hline
-Module		& Logic Elements	& Memory (bits)	& Embedded Multipliers \\ \hline
+\begin{tabular}{cccc} \toprule
+Module		& Logic Elements	& Memory (bits)	& Embedded Multipliers \\ \midrule
 Control		& 9			& 0		& 0	\\
 Datapath	& 24			& 0		& 0	\\
 Registers	& 0			& 88		& 0	\\
 ALU		& 21			& 0		& 1	\\
-ROM		& 0			& 512		& 0 	\\ \hline
-Total 		& 54			& 600		& 1 	\\ \hline
+ROM		& 0			& 512		& 0 	\\ \midrule
+Total 		& 54			& 600		& 1 	\\ \bottomrule
 \end{tabular}
 \end{table}
 

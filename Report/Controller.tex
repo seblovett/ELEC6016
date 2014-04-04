@@ -1,7 +1,7 @@
 %  Controller.tex
 %  Document created by seblovett on seblovett-Ubuntu
 %  Date created: Tue 01 Apr 2014 20:09:16 BST
-%  <+Last Edited: Fri 04 Apr 2014 15:34:35 BST by hl13g10 on octopus +>
+%  <+Last Edited: Fri 04 Apr 2014 16:37:29 BST by hl13g10 on octopus +>
 
 
 \section{Controller}\label{sect:controller}
@@ -59,16 +59,16 @@ Listing \ref{controlopt} shows all the signals with their reduced decoding.
 \caption{Control signals and the instructions where they are asserted (are logic 1)}
 \label{tab:controlsignals}
 \centering
-\begin{tabular}{|c|c|c|} \hline
-Type & Signal Name & Instruction(s) \\ \hline
+\begin{tabular}{ccc} \toprule
+Type & Signal Name & Instruction(s) \\ \midrule
 \multirow{5}{*}{Combinational} & PcSel & JMPA \\ 
  & ImmSel & LUI \\
  & Op1Sel & JMPA, LUI, ADDI \\
  & WDataSel & STSW \\ 
- & AluOp & LUI, JMPA, PASSA, ADD, ADDI, MULT \\ \hline
+ & AluOp & LUI, JMPA, PASSA, ADD, ADDI, MULT \\ \midrule
 \multirow{3}{*}{Sequential} & PcWe & WAIT0 WAIT1 \\
  & RegWe & STSW, STACC \\
- & AccWe &  PASSA, ADD, ADDI, MULT, LUI \\ \hline
+ & AccWe &  PASSA, ADD, ADDI, MULT, LUI \\ \bottomrule
 
 \end{tabular}
 \end{table}

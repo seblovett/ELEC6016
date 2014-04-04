@@ -1,7 +1,7 @@
 % ISA.tex
 %  Document created by seblovett on seblovett-Ubuntu
 %  Date created: Tue 01 Apr 2014 20:08:47 BST
-%  <+Last Edited: Fri 04 Apr 2014 15:11:25 BST by hl13g10 on octopus +>
+%  <+Last Edited: Fri 04 Apr 2014 16:36:24 BST by hl13g10 on octopus +>
 
 
 \section{Instruction Set}
@@ -14,8 +14,8 @@ They are fully documented in table \ref{tab:isa}.
 \begin{table}
 \caption{Instruction Set and their operations}
 \label{tab:isa}
-\begin{tabular}{ccc} \hline 
-Instruction & Acronym & Operation \\ \hline
+\begin{tabular}{ccc} \toprule
+Instruction & Acronym & Operation \\ \midrule
 Store Switches & STSW Rn & Rn $\leftarrow$ Switches[7:0] \\
 Store Accumulator & STACC Rn & Rn $\leftarrow$ Acc \\
 Wait while 0 & WAIT0 & if(Switches[8] == 1) Pc++ \\
@@ -25,7 +25,7 @@ Load Upper Immediate & LUI Imm & Acc $\leftarrow$ {Imm, 4'b0000} \\
 Add Immediate & ADDI Imm & Acc $\leftarrow$ Acc + Imm \\
 Add Register & ADD Rn & Acc $\leftarrow$ Acc + Rn \\
 Multiply Register & MULT Rn & Acc $\leftarrow$ Acc * Rn \\
-Pass Register & PASSA Rn & Acc $\leftarrow$ Rn \\ \hline
+Pass Register & PASSA Rn & Acc $\leftarrow$ Rn \\ \bottomrule
 \end{tabular}
 \end{table}
 
