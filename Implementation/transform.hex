@@ -1,0 +1,46 @@
+84  // LUI 4; load constants
+90  // ADDI 0
+10  // STACC 0 ; a11 = 0.5 = x40
+89  // LUI 9; 
+90  // ADDI 0
+11  // STACC 1 ; a12 = -0.875 = x90
+89  // LUI 9; 
+90  // ADDI 0
+12  // STACC 2 ; a21 = -0.875 = x90
+86  // LUI 6
+90  // ADDI 0
+13  // STACC 3 ; a22 = 0.75 = x60
+80  // LUI 0; 
+95  // ADDI 5
+14  // STACC 4 ; b1
+80  // LUI 0; 
+9c  // ADDI 12
+15  // STACC 5 ; b2
+30  // WAIT0 ;wait while sw8 == 0 ; LOOP
+6  // STSW 6 ; store switches to R6 ; X
+70  // WAIT1 ; Wait while sw8 == 1
+30  // WAIT0 ; Wait while sw8 == 0
+7  // STSW 7 ; store switches to R7 ; Y
+70  // WAIT1
+c6  // PASSA 6 ;transform - load x1 to acc
+f0  // MULT 0 ; a11 * x1
+18  // STACC 8 ; store to r8
+c7  // PASSA 7 ; y1 to acc
+f1  // MULT 1 ; acc * a12
+d8  // ADD 8 ; (y1 * a12) + (x1 + a11)
+d4  // ADD 4 ; acc + b1
+19  // STACC 9 ; store to r9
+c6  // PASSA 6 ;transform - load x1 to acc
+f2  // MULT 2 ; a21 * x1
+18  // STACC 8 ; store to r8
+c7  // PASSA 7 ; y1 to acc
+f3  // MULT 3 ; acc * a22
+d8  // ADD 8 ; (y1 * a12) + (x1 + a11)
+d5  // ADD 5 ; acc + b1
+1a  // STACC 10 ; store to r10
+c9  // PASSA 9 ; display x2
+30  // WAIT0
+ca  // PASSA 10 ; display y2
+70  // WAIT1
+81  // LUI 1 ;return to loop - load address to acc
+52  // JMPA 2 ; jump to address 19
