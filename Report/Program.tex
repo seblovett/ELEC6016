@@ -1,7 +1,7 @@
 %  Program.tex
 %  Document created by seblovett on seblovett-Ubuntu
 %  Date created: Tue 01 Apr 2014 20:09:49 BST
-%  <+Last Edited: Fri 04 Apr 2014 15:23:12 BST by hl13g10 on octopus +>
+%  <+Last Edited: Sat 26 Apr 2014 12:00:19 BST by hl13g10 on octopus +>
 
 \section{Program}\label{sect:prog}
 
@@ -50,6 +50,7 @@ The whole process is seen in listing \ref{lsthandshake1}.
 The affine transform is shown in equation \eqref{eq:affine}.
 By multiplying the matrix out, $x_2$ and $y_2$ can be calculated by equations \eqref{eq:x2} and \eqref{eq:y2} respectively. 
 Listing \ref{lstaffinex} shows the instructions used to calculated $x_2$. 
+The $y_2$ value is calculated in the same way, using different source registers.
 
 \begin{equation}\label{eq:affine}
 \begin{bmatrix}
@@ -87,7 +88,7 @@ y_2 = a_{21} \times x_1 + a_{22} \times y_1 + b_2
 Once the transform is complete, a second handshake is done to read back the result. 
 The program then jumps to the start of the loop, ready for the next calculation. 
 This code is seen in listing \ref{lsthandshake2}.
-
+\newpage
 \lstinputlisting[firstline=41, lastline=46,caption={End of loop code to display results and return to the beginning of the loop},style=asm,label=lsthandshake2]{../Implementation/transform.asm}
 
 

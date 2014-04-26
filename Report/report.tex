@@ -1,13 +1,13 @@
 %  report.tex
 %  Document created by seblovett on seblovett-Ubuntu
 %  Date created: Tue 01 Apr 2014 19:44:08 BST
-%  <+Last Edited: Fri 04 Apr 2014 17:20:39 BST by hl13g10 on octopus +>
+%  <+Last Edited: Sat 26 Apr 2014 11:53:14 BST by hl13g10 on octopus +>
 
 \documentclass[12pt]{article}
 
 \usepackage[nodayofweek]{datetime}
 \usepackage{graphicx}
-\usepackage{todonotes}
+\usepackage[disable]{todonotes}
 \usepackage{multirow} 
 \usepackage{listings}
 \usepackage{amsmath}
@@ -27,6 +27,7 @@ This report documents the design and test of a picoMIPS processor.
 The processor is able to calculate an affine transform with predefined constants. 
 A small instruction set of ten instructions was implemented with an eight bit opcode format. 
 The processor is a register-accumulator based architecture. 
+It is written in System Verilog and is intended for the Altera Cyclone IV FPGA.
 \end{abstract}
 %TC:ignore
 

@@ -1,7 +1,7 @@
 %  Controller.tex
 %  Document created by seblovett on seblovett-Ubuntu
 %  Date created: Tue 01 Apr 2014 20:09:16 BST
-%  <+Last Edited: Fri 04 Apr 2014 16:37:29 BST by hl13g10 on octopus +>
+%  <+Last Edited: Sat 26 Apr 2014 11:58:08 BST by hl13g10 on octopus +>
 
 
 \section{Controller}\label{sect:controller}
@@ -14,7 +14,7 @@ It decodes the opcode into the correct signals for the multiplexers, ALU operati
 
 %why a multicyclsis needed
 The controller used is sequential. 
-This is due to the program memory and registers being sequential reads (see sections \ref{sect:prog} and \ref{sect:regs}).
+This is due to the program memory and registers being sequential memory (see sections \ref{sect:prog} and \ref{sect:regs}).
 Three states are implemented, \texttt{Fetch}. \texttt{Read} and \texttt{Execute}. 
 During the \texttt{Fetch} cycle, the program memory is accessed with a new address. 
 This then stores the instruction at the output of the program memory. 
@@ -53,6 +53,7 @@ Table \ref{tab:kmap:immsel} shows a K-Map for the \textit{ImmSel} signal, replac
 A lot of instructions are not affected by this control signal as it only affects the instructions using the immediate. 
 This results in a very simple logic expression of $!(Opcode[0] | Opcode[1])$, i.e. the \texttt{NOR} between the lowest two bits of the opcode. 
 This can be done for all the signals, except \textit{PcWe} as this is reliant on the value for of \textit{Switches[8]}. 
+The sequential signals can be minimised in a similar fashion, but are only asserted in the execute state.
 Listing \ref{controlopt} shows all the signals with their reduced decoding. 
 
 \begin{table}
@@ -77,7 +78,7 @@ Type & Signal Name & Instruction(s) \\ \midrule
 
 
 \begin{table}
-\caption{K-map of the instructions}
+\caption{Opcode allocation to the instructions}
 \label{tab:kmap}
 \centering
 \begin{tabular}{|c|c|p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}|}\cline{3-6}

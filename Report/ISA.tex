@@ -1,7 +1,7 @@
 % ISA.tex
 %  Document created by seblovett on seblovett-Ubuntu
 %  Date created: Tue 01 Apr 2014 20:08:47 BST
-%  <+Last Edited: Fri 04 Apr 2014 16:36:24 BST by hl13g10 on octopus +>
+%  <+Last Edited: Sat 26 Apr 2014 11:56:13 BST by hl13g10 on octopus +>
 
 
 \section{Instruction Set}
@@ -46,7 +46,7 @@ Load upper immediate (\texttt{LUI}) is used to load constants from the program m
 Used in conjunction with the \texttt{ADDI} instruction, any 8 bit value can be loaded to the accumulator in two instructions. 
 This can then be used to make a negative number to use for an arithmetic function.
 
-The register-accumulator design, although allows for only one operand, must also include extra instructions to move data.
+The register-accumulator design, although allows for only one operand in the instruction, must also include extra instructions to move data.
 The instructions needed are a pass to accumulator (\texttt{PASSA}), to write a value from a register to the accumulator, with no modification. 
 A store accumulator instruction (\texttt{STACC}) is also needed to write back the data to a register. 
 
@@ -55,7 +55,7 @@ A store accumulator instruction (\texttt{STACC}) is also needed to write back th
 The affine transform does not involve any decisions based on the data. 
 The only required control flow is during the handshaking protocol. 
 As this is reliant on the value of Switches[8], this is accomplished by two instructions, \texttt{WAIT0} and \texttt{WAIT1}. 
-These will only allow the program counter to increment if the value of Swithes[8] is correct.
+These will only allow the program counter to increment if the value of Switches[8] is correct.
 This means no flags need to be used in the design, and no conditional branches. 
 
 An absolute jump instruction is also implemented (\texttt{JMPA}). 
@@ -72,7 +72,7 @@ This is summarised in table \ref{tab:instruction}.
 A simple instruction format lends itself to simple decoding. 
 A maximum of sixteen general purpose registers (assuming no dummy register) can be used.
 
-\begin{table}
+\begin{table}[b]
 \caption{The instruction format used}
 \label{tab:instruction}
 \centering
